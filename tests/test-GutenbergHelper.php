@@ -6,8 +6,8 @@
  * @link https://technote.space
  */
 
-use PHPUnit\Framework\TestCase;
-use Technote\Helper;
+use /** @noinspection PhpUndefinedClassInspection */
+	PHPUnit\Framework\TestCase;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,38 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // @codeCoverageIgnoreEnd
 
-class TestHelper extends Helper {
-
-	private $plugins;
-	private $get_remote;
-
-	public function __construct( $plugins = [], $get_remote = null ) {
-		parent::__construct( null );
-		$this->plugins    = $plugins;
-		$this->get_remote = $get_remote;
-	}
-
-	/**
-	 * @return array
-	 */
-	public function get_active_plugins() {
-		return $this->plugins;
-	}
-
-	/**
-	 * @param string $url
-	 *
-	 * @return false|string
-	 */
-	public function get_remote( $url ) {
-		if ( isset( $this->get_remote ) ) {
-			return $this->get_remote;
-		}
-
-		return parent::get_remote( $url );
-	}
-
-}
+require_once dirname( __FILE__ ) . '/GutenbergHelper/Helper.php';
 
 /**
  * @noinspection PhpUndefinedClassInspection

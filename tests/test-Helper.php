@@ -6,7 +6,8 @@
  * @link https://technote.space
  */
 
-use PHPUnit\Framework\TestCase;
+use /** @noinspection PhpUndefinedClassInspection */
+	PHPUnit\Framework\TestCase;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
