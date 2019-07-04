@@ -11,6 +11,8 @@ if ( empty( $core ) ) {
 $test_plugins_dir = $core . 'wp-content/plugins/';
 
 if ( ! file_exists( "{$test_plugins_dir}/gutenberg" ) ) {
-	mkdir( $test_plugins_dir, 0755, true );
+	if ( ! file_exists( $test_plugins_dir ) ) {
+		mkdir( $test_plugins_dir, 0755, true );
+	}
 	symlink( "{$plugins_dir}/gutenberg", "{$test_plugins_dir}/gutenberg" );
 }
