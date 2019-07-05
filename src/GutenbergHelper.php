@@ -142,7 +142,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	 */
 	public function get_cache_key() {
 		if ( ! isset( $this->_cache_key ) ) {
-			$this->_cache_key = sha1( json_encode( [
+			$this->_cache_key = sha1( wp_json_encode( [
 				$this->get_helper()->get_wp_version(),
 				$this->get_gutenberg_version(),
 			] ) );
