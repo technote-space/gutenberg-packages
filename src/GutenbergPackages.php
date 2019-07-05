@@ -76,10 +76,14 @@ class GutenbergPackages {
 		}
 
 		if ( ! isset( $this->cache ) ) {
-			$this->cache = $this->get_gutenberg_package_versions();
-			if ( false === $this->cache ) {
-				$this->cache = $this->get_wp_editor_package_versions();
-			}
+			$this->cache = $this->get_gutenberg_helper()->get_cache( function () {
+				$version = $this->get_gutenberg_package_versions();
+				if ( false === $version ) {
+					$version = $this->get_wp_editor_package_versions();
+				}
+
+				return $version;
+			} );
 		}
 
 		return $this->cache;

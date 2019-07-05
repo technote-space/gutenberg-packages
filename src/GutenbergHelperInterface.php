@@ -8,6 +8,8 @@
 
 namespace Technote;
 
+use Closure;
+
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -74,5 +76,17 @@ interface GutenbergHelperInterface {
 	 * @return bool|string
 	 */
 	public function get_gutenberg_package_version( $package );
+
+	/**
+	 * @return string
+	 */
+	public function get_cache_key();
+
+	/**
+	 * @param Closure $get_value
+	 *
+	 * @return mixed
+	 */
+	public function get_cache( $get_value );
 
 }
