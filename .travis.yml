@@ -114,14 +114,12 @@ jobs:
     - stage: test
       language: php
       php: '5.6'
-      env:
-        - WP_VERSION=4.9
+      env: WP_VERSION=4.9
       script: bash travis-ci/bin/php/wp-test.sh
     - stage: test
       language: php
       php: '5.6'
-      env:
-        - WP_VERSION=3.9
+      env: WP_VERSION=3.9
       script: bash travis-ci/bin/php/wp-test.sh
 
 
