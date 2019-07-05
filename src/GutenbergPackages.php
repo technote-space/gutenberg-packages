@@ -22,9 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class GutenbergPackages {
 
-	/** @var HelperInterface $helper */
-	private $helper;
-
 	/** @var GutenbergHelperInterface $gutenberg_helper */
 	private $gutenberg_helper;
 
@@ -37,14 +34,19 @@ class GutenbergPackages {
 	/**
 	 * GutenbergPackages constructor.
 	 *
-	 * @param HelperInterface|null $helper
 	 * @param GutenbergHelperInterface|null $gutenberg_helper
 	 * @param bool|null $is_admin
 	 */
-	public function __construct( HelperInterface $helper = null, GutenbergHelperInterface $gutenberg_helper = null, $is_admin = null ) {
-		$this->helper           = isset( $helper ) ? $helper : new Helper();
-		$this->gutenberg_helper = isset( $gutenberg_helper ) ? $gutenberg_helper : new GutenbergHelper( $this->helper );
+	public function __construct( GutenbergHelperInterface $gutenberg_helper = null, $is_admin = null ) {
+		$this->gutenberg_helper = isset( $gutenberg_helper ) ? $gutenberg_helper : new GutenbergHelper();
 		$this->is_admin         = isset( $is_admin ) ? $is_admin : is_admin();
+	}
+
+	/**
+	 * @return GutenbergHelperInterface
+	 */
+	public function get_gutenberg_helper() {
+		return $this->gutenberg_helper;
 	}
 
 	/**
@@ -90,10 +92,10 @@ class GutenbergPackages {
 		$scripts = new WP_Scripts();
 		wp_default_packages_scripts( $scripts );
 
-		return $this->helper->get_collection( $scripts->registered )->map( function ( $script ) {
+		return $this->gutenberg_helper->get_helper()->get_collection( $scripts->registered )->map( function ( $script ) {
 			return $script->ver;
 		} )->filter( function ( $version, $key ) {
-			return $version && $this->helper->starts_with( $key, 'wp-' );
+			return $version && $this->gutenberg_helper->get_helper()->starts_with( $key, 'wp-' );
 		} )->to_array();
 	}
 
@@ -102,7 +104,7 @@ class GutenbergPackages {
 	 */
 	public function get_gutenberg_package_versions() {
 		if ( $this->gutenberg_helper->is_gutenberg_active() ) {
-			return $this->helper->get_collection( $this->gutenberg_helper->get_gutenberg_packages() )->map( function ( $package ) {
+			return $this->gutenberg_helper->get_helper()->get_collection( $this->gutenberg_helper->get_gutenberg_packages() )->map( function ( $package ) {
 				$version = $this->gutenberg_helper->get_gutenberg_package_version( $package );
 				if ( empty( $version ) ) {
 					return false;
@@ -127,7 +129,7 @@ class GutenbergPackages {
 	 * @return bool
 	 */
 	public function is_support_editor_package( $package ) {
-		return $this->helper->get_collection( $this->get_editor_package_versions() )->exists( $package );
+		return $this->gutenberg_helper->get_helper()->get_collection( $this->get_editor_package_versions() )->exists( $package );
 	}
 
 	/**
@@ -136,6 +138,13 @@ class GutenbergPackages {
 	 * @return string|false
 	 */
 	public function get_editor_package_version( $package ) {
-		return $this->helper->get_collection( $this->get_editor_package_versions() )->get( $package, false );
+		return $this->gutenberg_helper->get_helper()->get_collection( $this->get_editor_package_versions() )->get( $package, false );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_gutenberg_version() {
+		return $this->gutenberg_helper->get_gutenberg_version();
 	}
 }

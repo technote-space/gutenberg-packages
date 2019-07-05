@@ -27,10 +27,17 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	/**
 	 * GutenbergHelper constructor.
 	 *
-	 * @param HelperInterface $helper
+	 * @param HelperInterface|null $helper
 	 */
-	public function __construct( HelperInterface $helper ) {
-		$this->helper = $helper;
+	public function __construct( HelperInterface $helper = null ) {
+		$this->helper = isset( $helper ) ? $helper : new Helper();
+	}
+
+	/**
+	 * @return HelperInterface
+	 */
+	public function get_helper() {
+		return $this->helper;
 	}
 
 	/**
