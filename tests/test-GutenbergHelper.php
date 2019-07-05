@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // @codeCoverageIgnoreEnd
 
-require_once dirname( __FILE__ ) . '/GutenbergHelper/Helper.php';
+require_once dirname( __FILE__ ) . '/misc/Helper.php';
 
 /**
  * @noinspection PhpUndefinedClassInspection

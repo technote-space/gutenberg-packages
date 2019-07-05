@@ -21,6 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 interface GutenbergHelperInterface {
 
 	/**
+	 * @return HelperInterface
+	 */
+	public function get_helper();
+
+	/**
 	 * @return bool
 	 */
 	public function can_use_block_editor();

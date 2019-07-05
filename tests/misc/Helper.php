@@ -19,18 +19,23 @@ class TestHelper extends Helper {
 
 	private $plugins;
 	private $get_remote;
+	private $is_multisite;
 
-	public function __construct( $plugins = [], $get_remote = null ) {
-		parent::__construct( null );
-		$this->plugins    = $plugins;
-		$this->get_remote = $get_remote;
+	public function __construct( $plugins = null, $get_remote = null, $is_multisite = null ) {
+		$this->plugins      = $plugins;
+		$this->get_remote   = $get_remote;
+		$this->is_multisite = $is_multisite;
 	}
 
 	/**
 	 * @return array
 	 */
 	public function get_active_plugins() {
-		return $this->plugins;
+		if ( isset( $this->plugins ) ) {
+			return $this->plugins;
+		}
+
+		return parent::get_active_plugins();
 	}
 
 	/**
@@ -44,6 +49,17 @@ class TestHelper extends Helper {
 		}
 
 		return parent::get_remote( $url );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function is_multisite() {
+		if ( isset( $this->is_multisite ) ) {
+			return $this->is_multisite;
+		}
+
+		return parent::is_multisite();
 	}
 
 }

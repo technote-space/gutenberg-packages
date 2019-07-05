@@ -25,20 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Helper implements HelperInterface {
 
-	/** @var bool $is_multisite */
-	private $is_multisite;
-
 	/** @var WP_Filesystem_Direct $fs_cache */
 	private $fs_cache;
-
-	/**
-	 * Helper constructor.
-	 *
-	 * @param bool|null $is_multisite
-	 */
-	public function __construct( $is_multisite = null ) {
-		$this->is_multisite = isset( $is_multisite ) ? $is_multisite : is_multisite();
-	}
 
 	/**
 	 * @param array|Traversable $items
@@ -120,12 +108,19 @@ class Helper implements HelperInterface {
 	 */
 	public function get_active_plugins() {
 		$option = get_option( 'active_plugins', [] );
-		if ( $this->is_multisite ) {
+		if ( $this->is_multisite() ) {
 			$option = array_merge( $option, array_keys( get_site_option( 'active_sitewide_plugins' ) ) );
 			$option = array_unique( $option );
 		}
 
 		return array_values( $option );
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function is_multisite() {
+		return is_multisite();
 	}
 
 	/**
