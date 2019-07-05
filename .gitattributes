@@ -10,27 +10,11 @@
 *.jpg binary
 *.gif binary
 
-.git export-ignore
-.github export-ignore
-.gitignore export-ignore
-.gitattributes export-ignore
-.editorconfig export-ignore
-.idea export-ignore
-.babelrc export-ignore
-.eslintrc export-ignore
-.npmignore export-ignore
-*.yml export-ignore
-*.xml export-ignore
-package.json export-ignore
-package-lock.json export-ignore
-composer.json export-ignore
-composer.lock export-ignore
-
-test export-ignore
-__test__ export-ignore
-assets/js/node_modules export-ignore
-assets/js/coverage export-ignore
-assets/js/.nyc_output export-ignore
-assets/js/src export-ignore
-assets/js/*.config.js export-ignore
-assets/js/jest* export-ignore
+/tests export-ignore
+/.github export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/phpunit.xml export-ignore
+/README.md export-ignore
+/_config.yml export-ignore
+/composer.json export-ignore
