@@ -8,6 +8,7 @@
 
 namespace Technote;
 
+use Closure;
 use Generator;
 use Traversable;
 use WP_Filesystem_Direct;
@@ -90,5 +91,13 @@ interface HelperInterface {
 	 * @return false|string
 	 */
 	public function get_remote( $url );
+
+	/**
+	 * @param string $key
+	 * @param Closure $get_value
+	 *
+	 * @return mixed
+	 */
+	public function get_cache( $key, $get_value );
 
 }

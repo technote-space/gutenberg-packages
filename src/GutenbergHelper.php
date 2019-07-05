@@ -8,6 +8,8 @@
 
 namespace Technote;
 
+use Closure;
+
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,6 +25,9 @@ class GutenbergHelper implements GutenbergHelperInterface {
 
 	/** @var HelperInterface $helper */
 	private $helper;
+
+	/** @var string $cache_key */
+	private $cache_key;
 
 	/**
 	 * GutenbergHelper constructor.
@@ -130,6 +135,29 @@ class GutenbergHelper implements GutenbergHelperInterface {
 		}
 
 		return $this->helper->get_collection( json_decode( $body, true ) )->get( 'version' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_cache_key() {
+		if ( ! isset( $this->_cache_key ) ) {
+			$this->_cache_key = sha1( json_encode( [
+				$this->get_helper()->get_wp_version(),
+				$this->get_gutenberg_version(),
+			] ) );
+		}
+
+		return $this->cache_key;
+	}
+
+	/**
+	 * @param Closure $get_value
+	 *
+	 * @return mixed
+	 */
+	public function get_cache( $get_value ) {
+		return $this->get_helper()->get_cache( $this->get_cache_key(), $get_value );
 	}
 
 }

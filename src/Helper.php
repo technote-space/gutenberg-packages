@@ -8,6 +8,7 @@
 
 namespace Technote;
 
+use Closure;
 use Generator;
 use Traversable;
 use WP_Filesystem_Direct;
@@ -182,6 +183,22 @@ class Helper implements HelperInterface {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param string $key
+	 * @param Closure $get_value
+	 *
+	 * @return mixed
+	 */
+	public function get_cache( $key, $get_value ) {
+		$value = get_transient( $key );
+		if ( false === $value ) {
+			$value = $get_value();
+			set_transient( $key, $value, WEEK_IN_SECONDS );
+		}
+
+		return $value;
 	}
 
 }
