@@ -33,7 +33,7 @@ stages:
 
 before_script:
   - git clone --depth=1 https://github.com/wp-content-framework/travis-ci.git travis-ci
-  - bash travis-ci/bin/prepare.sh
+  - bash travis-ci/bin/prepare.sh install
 
 jobs:
   fast_finish: true

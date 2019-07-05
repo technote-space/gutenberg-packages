@@ -34,7 +34,10 @@ class GutenbergPackages extends WP_UnitTestCase {
 	public function test_is_block_editor() {
 		set_current_screen( 'post-new' );
 		$this->assertFalse( $this->get_instance( true, false, false )->is_block_editor() );
+		get_current_screen()->is_block_editor( true );
 		$this->assertTrue( $this->get_instance( true, false, true )->is_block_editor() );
+		get_current_screen()->is_block_editor( false );
+		$this->assertFalse( $this->get_instance( true, false, true )->is_block_editor() );
 		$this->assertFalse( $this->get_instance( false, false, true )->is_block_editor() );
 	}
 
