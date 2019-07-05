@@ -8,7 +8,6 @@
 
 use /** @noinspection PhpUndefinedClassInspection */
 	PHPUnit\Framework\TestCase;
-use Technote\Helper;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // @codeCoverageIgnoreEnd
 
-require_once dirname( __FILE__ ) . '/GutenbergPackages/GutenbergHelper.php';
+require_once dirname( __FILE__ ) . '/misc/GutenbergHelper.php';
 
 /**
  * @noinspection PhpUndefinedClassInspection
@@ -28,7 +27,11 @@ require_once dirname( __FILE__ ) . '/GutenbergPackages/GutenbergHelper.php';
 class GutenbergPackages extends WP_UnitTestCase {
 
 	private function get_instance( $can_use_block_editor = true, $is_gutenberg_active = false, $is_admin = null, $github_url = null ) {
-		return new \Technote\GutenbergPackages( new Helper(), new TestGutenbergHelper( $can_use_block_editor, $is_gutenberg_active, $github_url ), $is_admin );
+		return new \Technote\GutenbergPackages( new TestGutenbergHelper( $can_use_block_editor, $is_gutenberg_active, $github_url ), $is_admin );
+	}
+
+	public function test_get_gutenberg_helper() {
+		$this->assertInstanceOf( 'TestGutenbergHelper', $this->get_instance()->get_gutenberg_helper() );
 	}
 
 	public function test_is_block_editor() {
@@ -64,5 +67,9 @@ class GutenbergPackages extends WP_UnitTestCase {
 		$this->assertNotEmpty( $this->get_instance( true, false )->get_editor_package_version( 'wp-editor' ) );
 		$this->assertNotEmpty( $this->get_instance( true, false )->get_editor_package_version( 'wp-components' ) );
 		$this->assertEmpty( $this->get_instance( true, false )->get_editor_package_version( 'test' ) );
+	}
+
+	public function test_get_gutenberg_version() {
+		$this->assertEmpty( $this->get_instance( true, false )->get_gutenberg_version() );
 	}
 }

@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // @codeCoverageIgnoreEnd
 
+require_once dirname( __FILE__ ) . '/misc/Helper.php';
+
 /**
  * @noinspection PhpUndefinedClassInspection
  * Helper test case.
@@ -25,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Helper extends WP_UnitTestCase {
 
 	private function get_instance( $is_multisite = null ) {
-		return new \Technote\Helper( $is_multisite );
+		return new TestHelper( null, null, $is_multisite );
 	}
 
 	public function test_get_collection() {
