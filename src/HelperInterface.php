@@ -17,7 +17,6 @@ use WP_Filesystem_Direct;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
 /**
@@ -72,11 +71,6 @@ interface HelperInterface {
 	 * @return array
 	 */
 	public function get_active_plugins();
-
-	/**
-	 * @return WP_Filesystem_Direct
-	 */
-	public function get_fs();
 
 	/**
 	 * @param string $version

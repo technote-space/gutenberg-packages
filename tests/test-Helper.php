@@ -135,11 +135,6 @@ class Helper extends WP_UnitTestCase {
 		update_site_option( 'active_sitewide_plugins', $tmp2 );
 	}
 
-	public function test_get_fs() {
-		$this->assertInstanceOf( '\WP_Filesystem_Direct', $this->get_instance()->get_fs() );
-		$this->assertInstanceOf( '\WP_Filesystem_Direct', $this->get_instance()->get_fs() );
-	}
-
 	public function test_get_release_version() {
 		$this->assertEquals( '5.0', $this->get_instance()->get_release_version( '5.0.1' ) );
 		$this->assertEquals( '5.1', $this->get_instance()->get_release_version( 'v5.1' ) );

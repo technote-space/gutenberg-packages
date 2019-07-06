@@ -11,13 +11,11 @@ namespace Technote;
 use Closure;
 use Generator;
 use Traversable;
-use WP_Filesystem_Direct;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
 /**
@@ -25,9 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package Technote
  */
 class Helper implements HelperInterface {
-
-	/** @var WP_Filesystem_Direct $fs_cache */
-	private $fs_cache;
 
 	/**
 	 * @param array|Traversable $items
@@ -122,36 +117,6 @@ class Helper implements HelperInterface {
 	 */
 	protected function is_multisite() {
 		return is_multisite();
-	}
-
-	/**
-	 * @return WP_Filesystem_Direct
-	 */
-	public function get_fs() {
-		if ( ! $this->fs_cache ) {
-			// @codeCoverageIgnoreStart
-			if ( ! class_exists( '\WP_Filesystem_Base' ) ) {
-				/** @noinspection PhpIncludeInspection */
-				require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
-			}
-			if ( ! class_exists( '\WP_Filesystem_Direct' ) ) {
-				/** @noinspection PhpIncludeInspection */
-				require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
-			}
-
-			// ABSPATH . 'wp-admin/includes/file.php' WP_Filesystem
-			if ( ! defined( 'FS_CHMOD_DIR' ) ) {
-				define( 'FS_CHMOD_DIR', file_exists( ABSPATH ) ? ( fileperms( ABSPATH ) & 0777 | 0755 ) : 0755 );
-			}
-			if ( ! defined( 'FS_CHMOD_FILE' ) ) {
-				define( 'FS_CHMOD_FILE', file_exists( ABSPATH . 'index.php' ) ? ( fileperms( ABSPATH . 'index.php' ) & 0777 | 0644 ) : 0644 );
-			}
-			// @codeCoverageIgnoreEnd
-
-			$this->fs_cache = new WP_Filesystem_Direct( false );
-		}
-
-		return $this->fs_cache;
 	}
 
 	/**
