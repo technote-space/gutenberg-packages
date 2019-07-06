@@ -14,7 +14,6 @@ use Closure;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
 /**
