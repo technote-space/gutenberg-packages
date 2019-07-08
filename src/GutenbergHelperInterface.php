@@ -28,11 +28,11 @@ interface GutenbergHelperInterface {
 	public function get_helper();
 
 	/**
-	 * @param string $target
+	 * @param string|null $target
 	 *
 	 * @return GutenbergPackageVersionProvider
 	 */
-	public function get_provider( $target = 'gutenberg' );
+	public function get_provider( $target = null );
 
 	/**
 	 * @return bool

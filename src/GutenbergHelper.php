@@ -48,16 +48,32 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $target
+	 * @param string|null $target
 	 *
 	 * @return GutenbergPackageVersionProvider
 	 */
-	public function get_provider( $target = 'gutenberg' ) {
+	public function get_provider( $target = null ) {
+		$target = $this->normalize_target( $target );
 		if ( ! isset( $this->provider[ $target ] ) ) {
 			$this->provider[ $target ] = new GutenbergPackageVersionProvider( $target );
 		}
 
 		return $this->provider[ $target ];
+	}
+
+	/**
+	 * @param string $target
+	 *
+	 * @return string
+	 */
+	private function normalize_target( $target ) {
+		if ( ! isset( $target ) ) {
+			$target = 'gutenberg';
+		} elseif ( 'gutenberg' !== $target ) {
+			$target = 'wp-core';
+		}
+
+		return $target;
 	}
 
 	/**
@@ -112,11 +128,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	 * @return string
 	 */
 	public function get_api_url( $target, ...$append ) {
-		if ( 'gutenberg' !== $target ) {
-			$target = 'wp-core';
-		}
-
-		return "https://api.wp-framework.dev/api/v1/{$target}/" . implode( '/', $append );
+		return "https://api.wp-framework.dev/api/v1/{$this->normalize_target( $target )}/" . implode( '/', $append );
 	}
 
 	/**
@@ -168,7 +180,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	 * @return array|null
 	 */
 	protected function get_gutenberg_packages_from_api( $tag ) {
-		$versions = $this->get_helper()->get_remote( $this->get_api_url( 'gutenberg', 'tags', "{$this->get_provider()->normalize_tag($tag)}.json" ) );
+		$versions = $this->get_helper()->get_remote( $this->get_api_url( null, 'tags', "{$this->get_provider()->normalize_tag($tag)}.json" ) );
 		if ( ! empty( $versions ) ) {
 			return array_keys( json_decode( $versions, true ) );
 		}
@@ -239,7 +251,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	 * @return false|string
 	 */
 	protected function get_gutenberg_package_version_from_api( $tag, $package ) {
-		$versions = $this->get_helper()->get_remote( $this->get_api_url( 'gutenberg', 'tags', "{$this->get_provider()->normalize_tag($tag)}.json" ) );
+		$versions = $this->get_helper()->get_remote( $this->get_api_url( null, 'tags', "{$this->get_provider()->normalize_tag($tag)}.json" ) );
 		if ( ! empty( $versions ) ) {
 			$versions = json_decode( $versions, true );
 			$package  = $this->get_helper()->normalize_package( $package, 'wp-' );
