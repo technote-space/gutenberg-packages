@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // @codeCoverageIgnoreEnd
 
-require_once dirname( __FILE__ ) . '/SetupArgsHelper.php';
+require_once dirname( __FILE__ ) . '/Testable.php';
 
 /**
  * Class TestGutenbergPackages
@@ -24,7 +24,7 @@ require_once dirname( __FILE__ ) . '/SetupArgsHelper.php';
  */
 class TestGutenbergPackages extends GutenbergPackages {
 
-	use SetupArgsHelper;
+	use Testable;
 
 	/**
 	 * TestGutenbergPackages constructor.
@@ -32,10 +32,15 @@ class TestGutenbergPackages extends GutenbergPackages {
 	 * @param array $args
 	 * @param GutenbergHelperInterface|null $helper
 	 * @param null|bool $is_admin
+	 *
+	 * @throws ReflectionException
 	 */
 	public function __construct( array $args, GutenbergHelperInterface $helper = null, $is_admin = null ) {
-		parent::__construct( $helper, $is_admin );
+		parent::__construct( $helper );
 		$this->setup_args( $args );
+		if ( isset( $is_admin ) ) {
+			$this->set_property( get_current_screen(), 'in_admin', $is_admin );
+		}
 	}
 
 	/**

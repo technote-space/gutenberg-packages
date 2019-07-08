@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // @codeCoverageIgnoreEnd
 
-require_once dirname( __FILE__ ) . '/SetupArgsHelper.php';
+require_once dirname( __FILE__ ) . '/Testable.php';
 
 /**
  * Class TestGutenbergHelper
@@ -31,7 +31,7 @@ require_once dirname( __FILE__ ) . '/SetupArgsHelper.php';
  */
 class TestGutenbergHelper extends GutenbergHelper {
 
-	use SetupArgsHelper;
+	use Testable;
 
 	/**
 	 * TestGutenbergHelper constructor.

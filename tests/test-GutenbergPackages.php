@@ -28,19 +28,34 @@ class GutenbergPackages extends WP_UnitTestCase {
 
 	/**
 	 * @SuppressWarnings(StaticAccess)
+	 * @throws ReflectionException
 	 */
 	public static function setUpBeforeClass() {
 		static::reset();
 	}
 
+	/**
+	 * @throws ReflectionException
+	 */
 	public static function tearDownAfterClass() {
 		static::reset();
 	}
 
+	/**
+	 * @throws ReflectionException
+	 */
 	private static function reset() {
 		static::get_instance();
 	}
 
+	/**
+	 * @param array $args
+	 * @param null|bool $is_admin
+	 * @param bool $delete_cache
+	 *
+	 * @return TestGutenbergPackages
+	 * @throws ReflectionException
+	 */
 	private static function get_instance( $args = [], $is_admin = null, $delete_cache = true ) {
 		$args['gutenberg_absolute_path']   = '/tmp/wordpress/wp-content/plugins/gutenberg/gutenberg.php';
 		$args['gutenberg_package_version'] = function ( $package, $original ) {
@@ -65,10 +80,16 @@ class GutenbergPackages extends WP_UnitTestCase {
 		return $instance;
 	}
 
+	/**
+	 * @throws ReflectionException
+	 */
 	public function test_get_gutenberg_helper() {
 		$this->assertInstanceOf( 'TestGutenbergHelper', static::get_instance()->get_gutenberg_helper() );
 	}
 
+	/**
+	 * @throws ReflectionException
+	 */
 	public function test_is_block_editor() {
 		set_current_screen( 'post-new' );
 		$this->assertFalse( static::get_instance( [
@@ -91,6 +112,9 @@ class GutenbergPackages extends WP_UnitTestCase {
 		], true )->is_block_editor() );
 	}
 
+	/**
+	 * @throws ReflectionException
+	 */
 	public function test_get_editor_package_versions() {
 		$this->assertEquals( [], static::get_instance( [ 'can_use_block_editor' => false ] )->get_editor_package_versions() );
 		$this->assertNotEmpty( static::get_instance( [
@@ -147,6 +171,9 @@ class GutenbergPackages extends WP_UnitTestCase {
 		$this->assertNotEmpty( $instance->get_editor_package_versions() );
 	}
 
+	/**
+	 * @throws ReflectionException
+	 */
 	public function test_cache() {
 		$this->assertNotEmpty( static::get_instance( [
 			'can_use_block_editor' => true,
@@ -159,6 +186,9 @@ class GutenbergPackages extends WP_UnitTestCase {
 		], null, false )->get_editor_package_versions() );
 	}
 
+	/**
+	 * @throws ReflectionException
+	 */
 	public function test_is_support_editor_package() {
 		global $wp_version;
 		$this->assertTrue( static::get_instance( [
@@ -183,6 +213,9 @@ class GutenbergPackages extends WP_UnitTestCase {
 		] )->is_support_editor_package( 'test-package' ) );
 	}
 
+	/**
+	 * @throws ReflectionException
+	 */
 	public function test_get_editor_package_version() {
 		$this->assertNotEmpty( static::get_instance( [
 			'can_use_block_editor' => true,
@@ -202,10 +235,13 @@ class GutenbergPackages extends WP_UnitTestCase {
 		] )->get_editor_package_version( 'test-package' ) );
 	}
 
+	/**
+	 * @throws ReflectionException
+	 */
 	public function test_get_gutenberg_version() {
 		$this->assertEmpty( static::get_instance( [
 			'can_use_block_editor' => true,
 			'is_gutenberg_active'  => false,
-		] )->get_gutenberg_tag() );
+		] )->get_gutenberg_version() );
 	}
 }

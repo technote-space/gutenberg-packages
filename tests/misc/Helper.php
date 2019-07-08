@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // @codeCoverageIgnoreEnd
 
-require_once dirname( __FILE__ ) . '/SetupArgsHelper.php';
+require_once dirname( __FILE__ ) . '/Testable.php';
 
 /**
  * Class TestHelper
@@ -24,7 +24,7 @@ require_once dirname( __FILE__ ) . '/SetupArgsHelper.php';
  */
 class TestHelper extends Helper {
 
-	use SetupArgsHelper;
+	use Testable;
 
 	/**
 	 * TestHelper constructor.
@@ -32,8 +32,10 @@ class TestHelper extends Helper {
 	 * @param array $args
 	 */
 	public function __construct( array $args = [] ) {
-		parent::__construct( isset( $args['cache_expiration'] ) ? $args['cache_expiration'] : null );
 		$this->setup_args( $args );
+		if ( isset( $args['cache_expiration'] ) ) {
+			$this->set_cache_expiration( $args['cache_expiration'] );
+		}
 	}
 
 	/**

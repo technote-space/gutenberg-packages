@@ -11,7 +11,6 @@ namespace Technote;
 use Closure;
 use Generator;
 use Traversable;
-use WP_Filesystem_Direct;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,6 +30,11 @@ interface HelperInterface {
 	 * @return Collection
 	 */
 	public function get_collection( $items );
+
+	/**
+	 * @param int $cache_expiration
+	 */
+	public function set_cache_expiration( $cache_expiration );
 
 	/**
 	 * @param string $dir

@@ -28,23 +28,19 @@ class Helper implements HelperInterface {
 	private $cache_expiration = DAY_IN_SECONDS;
 
 	/**
-	 * Helper constructor.
-	 *
-	 * @param null|int $cache_expiration
-	 */
-	public function __construct( $cache_expiration = null ) {
-		if ( isset( $cache_expiration ) ) {
-			$this->cache_expiration = $cache_expiration;
-		}
-	}
-
-	/**
 	 * @param array|Traversable $items
 	 *
 	 * @return Collection
 	 */
 	public function get_collection( $items ) {
 		return new Collection( $items );
+	}
+
+	/**
+	 * @param int $cache_expiration
+	 */
+	public function set_cache_expiration( $cache_expiration ) {
+		$this->cache_expiration = $cache_expiration;
 	}
 
 	/**

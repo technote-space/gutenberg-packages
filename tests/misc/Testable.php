@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 // @codeCoverageIgnoreEnd
 
 /**
- * Trait SetupArgsHelper
+ * Trait Testable
  */
-trait SetupArgsHelper {
+trait Testable {
 
 	/**
 	 * @return array
@@ -34,6 +34,21 @@ trait SetupArgsHelper {
 				$this->$param = $args[ $param ];
 			}
 		}
+	}
+
+	/**
+	 * @param $target
+	 * @param $name
+	 * @param $value
+	 *
+	 * @throws ReflectionException
+	 */
+	private function set_property( $target, $name, $value ) {
+		$reflection = new ReflectionClass( $target );
+		$property   = $reflection->getProperty( $name );
+		$property->setAccessible( true );
+		$property->setValue( $target, $value );
+		$property->setAccessible( false );
 	}
 
 }

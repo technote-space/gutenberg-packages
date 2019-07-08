@@ -28,18 +28,13 @@ class GutenbergPackages {
 	/** @var array|false $cache */
 	private $cache;
 
-	/** @var bool $is_admin */
-	private $is_admin;
-
 	/**
 	 * GutenbergPackages constructor.
 	 *
 	 * @param GutenbergHelperInterface|null $helper
-	 * @param bool|null $is_admin
 	 */
-	public function __construct( GutenbergHelperInterface $helper = null, $is_admin = null ) {
-		$this->helper   = isset( $helper ) ? $helper : new GutenbergHelper();
-		$this->is_admin = isset( $is_admin ) ? $is_admin : is_admin();
+	public function __construct( GutenbergHelperInterface $helper = null ) {
+		$this->helper = isset( $helper ) ? $helper : new GutenbergHelper();
 	}
 
 	/**
@@ -60,7 +55,7 @@ class GutenbergPackages {
 	 * @return bool
 	 */
 	public function is_block_editor() {
-		if ( ! $this->is_admin ) {
+		if ( ! is_admin() ) {
 			return false;
 		}
 
@@ -199,7 +194,7 @@ class GutenbergPackages {
 	/**
 	 * @return string
 	 */
-	public function get_gutenberg_tag() {
+	public function get_gutenberg_version() {
 		return $this->get_gutenberg_helper()->get_gutenberg_tag();
 	}
 }
