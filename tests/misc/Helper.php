@@ -14,16 +14,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // @codeCoverageIgnoreEnd
 
+require_once dirname( __FILE__ ) . '/SetupArgsHelper.php';
+
+/**
+ * Class TestHelper
+ * @property-read $plugins
+ * @property-read $get_remote
+ * @property-read $is_multisite
+ */
 class TestHelper extends Helper {
 
-	private $plugins;
-	private $get_remote;
-	private $is_multisite;
+	use SetupArgsHelper;
 
-	public function __construct( $plugins = null, $get_remote = null, $is_multisite = null ) {
-		$this->plugins      = $plugins;
-		$this->get_remote   = $get_remote;
-		$this->is_multisite = $is_multisite;
+	/**
+	 * TestHelper constructor.
+	 *
+	 * @param array $args
+	 */
+	public function __construct( array $args = [] ) {
+		parent::__construct( isset( $args['cache_expiration'] ) ? $args['cache_expiration'] : null );
+		$this->setup_args( $args );
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function target_args() {
+		return [
+			'plugins',
+			'get_remote',
+			'is_multisite',
+		];
 	}
 
 	/**

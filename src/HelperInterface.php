@@ -77,7 +77,15 @@ interface HelperInterface {
 	 *
 	 * @return false|string
 	 */
-	public function get_release_version( $version );
+	public function get_release_tag( $version );
+
+	/**
+	 * @param string $package
+	 * @param string $prefix
+	 *
+	 * @return string
+	 */
+	public function normalize_package( $package, $prefix = '' );
 
 	/**
 	 * @param string $url
@@ -93,5 +101,14 @@ interface HelperInterface {
 	 * @return mixed
 	 */
 	public function get_cache( $key, $get_value );
+
+	/**
+	 * @param mixed $default
+	 * @param Closure $check
+	 * @param Closure ...$methods
+	 *
+	 * @return mixed
+	 */
+	public function get_data( $default, $check, ...$methods );
 
 }

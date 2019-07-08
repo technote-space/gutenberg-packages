@@ -25,8 +25,11 @@ require_once dirname( __FILE__ ) . '/misc/Helper.php';
  */
 class Helper extends WP_UnitTestCase {
 
-	private function get_instance( $is_multisite = null ) {
-		return new TestHelper( null, null, $is_multisite );
+	private function get_instance( $is_multisite = null, $cache_expiration = null ) {
+		return new TestHelper( [
+			'is_multisite'     => $is_multisite,
+			'cache_expiration' => $cache_expiration,
+		] );
 	}
 
 	public function test_get_collection() {
@@ -96,7 +99,9 @@ class Helper extends WP_UnitTestCase {
 		$this->assertTrue( $this->get_instance()->is_plugin_active( 'a/a.php' ) );
 		$this->assertTrue( $this->get_instance()->is_plugin_active( 'b/b.php' ) );
 		$this->assertTrue( $this->get_instance( true )->is_plugin_active( 'd/d.php' ) );
+		$this->assertTrue( $this->get_instance( true, 100 )->is_plugin_active( 'd/d.php' ) );
 		$this->assertFalse( $this->get_instance( false )->is_plugin_active( 'd/d.php' ) );
+		$this->assertFalse( $this->get_instance( false, 100 )->is_plugin_active( 'd/d.php' ) );
 		$this->assertFalse( $this->get_instance()->is_plugin_active( 'd/d' ) );
 		$this->assertFalse( $this->get_instance()->is_plugin_active( '' ) );
 
@@ -134,14 +139,16 @@ class Helper extends WP_UnitTestCase {
 		update_site_option( 'active_sitewide_plugins', $tmp2 );
 	}
 
-	public function test_get_release_version() {
-		$this->assertEquals( '5.0', $this->get_instance()->get_release_version( '5.0.1' ) );
-		$this->assertEquals( '5.1', $this->get_instance()->get_release_version( 'v5.1' ) );
-		$this->assertEquals( '6.0', $this->get_instance()->get_release_version( '6.0.0' ) );
-		$this->assertEquals( false, $this->get_instance()->get_release_version( '123' ) );
+	public function test_get_release_tag() {
+		$this->assertEquals( '5.0', $this->get_instance()->get_release_tag( '5.0.1' ) );
+		$this->assertEquals( '5.1', $this->get_instance()->get_release_tag( 'v5.1' ) );
+		$this->assertEquals( '6.0', $this->get_instance()->get_release_tag( '6.0.0' ) );
+		$this->assertEquals( false, $this->get_instance()->get_release_tag( '123' ) );
+		$this->assertEquals( false, $this->get_instance()->get_release_tag( '' ) );
 	}
 
 	public function test_get_remote() {
+		$this->assertNotEmpty( $this->get_instance()->get_remote( 'https://api.wp-framework.dev/api/v1/gutenberg/tags.json' ) );
 		$this->assertFalse( $this->get_instance()->get_remote( 'http://example.com/404' ) );
 	}
 }
