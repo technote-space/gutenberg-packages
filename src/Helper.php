@@ -24,6 +24,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Helper implements HelperInterface {
 
+	/** @var int $cache_expiration */
+	private $cache_expiration = DAY_IN_SECONDS;
+
+	/**
+	 * Helper constructor.
+	 *
+	 * @param null|int $cache_expiration
+	 */
+	public function __construct( $cache_expiration = null ) {
+		if ( isset( $cache_expiration ) ) {
+			$this->cache_expiration = $cache_expiration;
+		}
+	}
+
 	/**
 	 * @param array|Traversable $items
 	 *
@@ -120,20 +134,30 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param string $version
+	 * @param string $tag
 	 *
 	 * @return false|string
 	 */
-	public function get_release_version( $version ) {
-		if ( empty( $version ) ) {
+	public function get_release_tag( $tag ) {
+		if ( empty( $tag ) ) {
 			return false;
 		}
 
-		if ( preg_match( '#v?(\d+)(\.\d+)(\.\d+)?#', $version, $matches ) ) {
+		if ( preg_match( '#v?(\d+)(\.\d+)(\.\d+)?#', $tag, $matches ) ) {
 			return $matches[1] . $matches[2];
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param string $package
+	 * @param string $prefix
+	 *
+	 * @return string
+	 */
+	public function normalize_package( $package, $prefix = '' ) {
+		return $prefix . preg_replace( '#^\Awp-#', '', $package );
 	}
 
 	/**
@@ -160,10 +184,28 @@ class Helper implements HelperInterface {
 		$value = get_transient( $key );
 		if ( false === $value ) {
 			$value = $get_value();
-			set_transient( $key, $value, WEEK_IN_SECONDS );
+			set_transient( $key, $value, $this->cache_expiration );
 		}
 
 		return $value;
+	}
+
+	/**
+	 * @param mixed $default
+	 * @param Closure $check
+	 * @param Closure ...$methods
+	 *
+	 * @return mixed
+	 */
+	public function get_data( $default, $check, ...$methods ) {
+		foreach ( $methods as $method ) {
+			$data = $method();
+			if ( $check( $data ) ) {
+				return $data;
+			}
+		}
+
+		return $default;
 	}
 
 }

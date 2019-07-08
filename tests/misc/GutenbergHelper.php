@@ -6,8 +6,8 @@
  * @link https://technote.space
  */
 
-use Technote\Helper;
 use Technote\GutenbergHelper;
+use Technote\HelperInterface;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,57 +15,97 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // @codeCoverageIgnoreEnd
 
+require_once dirname( __FILE__ ) . '/SetupArgsHelper.php';
+
+/**
+ * Class TestGutenbergHelper
+ * @property-read $can_use_block_editor
+ * @property-read $is_gutenberg_active
+ * @property-read $github_url
+ * @property-read $gutenberg_packages_from_library
+ * @property-read $gutenberg_packages_from_api
+ * @property-read $gutenberg_package_version_from_library
+ * @property-read $gutenberg_package_version_from_api
+ * @property-read $gutenberg_absolute_path
+ * @property-read $gutenberg_package_version
+ */
 class TestGutenbergHelper extends GutenbergHelper {
 
-	private $can_use_block_editor;
-	private $is_gutenberg_active;
-	private $github_url;
+	use SetupArgsHelper;
 
-	public function __construct( $can_use_block_editor = true, $is_gutenberg_active = false, $github_url = null ) {
-		parent::__construct( new Helper() );
-		$this->can_use_block_editor = $can_use_block_editor;
-		$this->is_gutenberg_active  = $is_gutenberg_active;
-		$this->github_url           = $github_url;
+	/**
+	 * TestGutenbergHelper constructor.
+	 *
+	 * @param array $args
+	 * @param HelperInterface|null $helper
+	 */
+	public function __construct( array $args, HelperInterface $helper = null ) {
+		parent::__construct( $helper );
+		$this->setup_args( $args );
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function target_args() {
+		return [
+			'can_use_block_editor',
+			'is_gutenberg_active',
+			'github_url',
+			'gutenberg_packages_from_library',
+			'gutenberg_packages_from_api',
+			'gutenberg_package_version_from_library',
+			'gutenberg_package_version_from_api',
+			'gutenberg_absolute_path',
+			'gutenberg_package_version',
+		];
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function can_use_block_editor() {
-		return $this->can_use_block_editor;
+		if ( isset( $this->can_use_block_editor ) ) {
+			return $this->can_use_block_editor;
+		}
+
+		return parent::can_use_block_editor();
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function is_gutenberg_active() {
-		return $this->is_gutenberg_active;
+		if ( isset( $this->is_gutenberg_active ) ) {
+			return $this->is_gutenberg_active;
+		}
+
+		return parent::is_gutenberg_active();
 	}
 
 	/**
 	 * @return string
 	 */
 	public function get_gutenberg_absolute_path() {
-		return '/tmp/wordpress/wp-content/plugins/gutenberg/gutenberg.php';
+		if ( isset( $this->gutenberg_absolute_path ) ) {
+			return $this->gutenberg_absolute_path;
+		}
+
+		return parent::get_gutenberg_absolute_path();
 	}
 
 	/**
-	 * @param $package
+	 * @param string $package
+	 * @param string|null $tag
 	 *
-	 * @return bool|string
+	 * @return false|string
 	 */
-	public function get_gutenberg_package_version( $package ) {
-		if ( 'rich-text' === $package ) {
-			return false;
+	public function get_gutenberg_package_version( $package, $tag = null ) {
+		if ( isset( $this->gutenberg_package_version ) ) {
+			return call_user_func( $this->gutenberg_package_version, $package, parent::get_gutenberg_package_version( $package, $tag ) );
 		}
 
-		if ( 'hooks' === $package ) {
-			return parent::get_gutenberg_package_version( $package );
-		}
-
-		return wp_json_encode( [
-			'version' => '1.2.3',
-		] );
+		return parent::get_gutenberg_package_version( $package, $tag );
 	}
 
 	/**
@@ -74,11 +114,66 @@ class TestGutenbergHelper extends GutenbergHelper {
 	 *
 	 * @return string
 	 */
-	public function get_github_url( $version, ...$append ) {
+	public function get_repository_url( $version, ...$append ) {
 		if ( isset( $this->github_url ) ) {
 			return $this->github_url;
 		}
 
-		return parent::get_github_url( $version, ...$append );
+		return parent::get_repository_url( $version, ...$append );
 	}
+
+	/**
+	 * @param string $tag
+	 *
+	 * @return array|null
+	 */
+	protected function get_gutenberg_packages_from_library( $tag ) {
+		if ( isset( $this->gutenberg_packages_from_library ) ) {
+			return $this->gutenberg_packages_from_library;
+		}
+
+		return parent::get_gutenberg_packages_from_library( $tag );
+	}
+
+	/**
+	 * @param string $tag
+	 *
+	 * @return array|null
+	 */
+	protected function get_gutenberg_packages_from_api( $tag ) {
+		if ( isset( $this->gutenberg_packages_from_api ) ) {
+			return $this->gutenberg_packages_from_api;
+		}
+
+		return parent::get_gutenberg_packages_from_api( $tag );
+	}
+
+	/**
+	 * @param string $tag
+	 * @param string $package
+	 *
+	 * @return false|string
+	 */
+	protected function get_gutenberg_package_version_from_library( $tag, $package ) {
+		if ( isset( $this->gutenberg_package_version_from_library ) ) {
+			return $this->gutenberg_package_version_from_library;
+		}
+
+		return parent::get_gutenberg_package_version_from_library( $tag, $package );
+	}
+
+	/**
+	 * @param string $tag
+	 * @param string $package
+	 *
+	 * @return false|string
+	 */
+	protected function get_gutenberg_package_version_from_api( $tag, $package ) {
+		if ( isset( $this->gutenberg_package_version_from_api ) ) {
+			return $this->gutenberg_package_version_from_api;
+		}
+
+		return parent::get_gutenberg_package_version_from_api( $tag, $package );
+	}
+
 }

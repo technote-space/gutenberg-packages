@@ -28,6 +28,9 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	/** @var string $cache_key */
 	private $cache_key;
 
+	/** @var GutenbergPackageVersionProvider[] $provider */
+	private $provider = [];
+
 	/**
 	 * GutenbergHelper constructor.
 	 *
@@ -45,10 +48,39 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
+	 * @param string|null $target
+	 *
+	 * @return GutenbergPackageVersionProvider
+	 */
+	public function get_provider( $target = null ) {
+		$target = $this->normalize_target( $target );
+		if ( ! isset( $this->provider[ $target ] ) ) {
+			$this->provider[ $target ] = new GutenbergPackageVersionProvider( $target );
+		}
+
+		return $this->provider[ $target ];
+	}
+
+	/**
+	 * @param string $target
+	 *
+	 * @return string
+	 */
+	private function normalize_target( $target ) {
+		if ( ! isset( $target ) ) {
+			$target = 'gutenberg';
+		} elseif ( 'gutenberg' !== $target ) {
+			$target = 'wp-core';
+		}
+
+		return $target;
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function can_use_block_editor() {
-		return $this->helper->compare_wp_version( '5.0', '>=' );
+		return $this->get_helper()->compare_wp_version( '5.0', '>=' );
 	}
 
 	/**
@@ -69,71 +101,181 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	 * @return bool
 	 */
 	public function is_gutenberg_active() {
-		return $this->helper->is_plugin_active( $this->get_gutenberg_file() );
+		return $this->get_helper()->is_plugin_active( $this->get_gutenberg_file() );
 	}
 
 	/**
 	 * @return string
 	 */
-	public function get_gutenberg_version() {
-		return $this->is_gutenberg_active() ? $this->helper->get_collection( get_plugin_data( $this->get_gutenberg_absolute_path() ) )->get( 'Version', '' ) : '';
+	public function get_gutenberg_tag() {
+		return $this->is_gutenberg_active() ? $this->get_helper()->get_collection( get_plugin_data( $this->get_gutenberg_absolute_path() ) )->get( 'Version', '' ) : '';
 	}
 
 	/**
-	 * @return false|string
-	 */
-	public function get_gutenberg_release_version() {
-		return $this->helper->get_release_version( $this->get_gutenberg_version() );
-	}
-
-	/**
-	 * @param string $version
+	 * @param string $tag
 	 * @param mixed ...$append
 	 *
 	 * @return string
 	 */
-	public function get_github_url( $version, ...$append ) {
-		return "https://raw.githubusercontent.com/WordPress/gutenberg/release/{$version}/" . implode( '/', $append );
+	public function get_repository_url( $tag, ...$append ) {
+		return "https://raw.githubusercontent.com/WordPress/gutenberg/release/{$this->get_helper()->get_release_tag( $tag )}/" . implode( '/', $append );
 	}
 
 	/**
+	 * @param string $target
+	 * @param mixed ...$append
+	 *
+	 * @return string
+	 */
+	public function get_api_url( $target, ...$append ) {
+		return "https://api.wp-framework.dev/api/v1/{$this->normalize_target( $target )}/" . implode( '/', $append );
+	}
+
+	/**
+	 * @param string|null $tag
+	 *
 	 * @return array
 	 */
-	public function get_gutenberg_packages() {
-		$version = $this->get_gutenberg_release_version();
-		if ( empty( $version ) ) {
+	public function get_gutenberg_packages( $tag = null ) {
+		if ( ! isset( $tag ) ) {
+			$tag = $this->get_gutenberg_tag();
+		}
+		if ( empty( $tag ) ) {
 			return [];
 		}
 
-		$body = $this->helper->get_remote( $this->get_github_url( $version, 'package.json' ) );
+		return $this->get_helper()->get_data( [],
+			function ( $data ) {
+				return is_array( $data );
+			},
+			function () use ( $tag ) {
+				return $this->get_gutenberg_packages_from_library( $tag );
+			},
+			function () use ( $tag ) {
+				return $this->get_gutenberg_packages_from_api( $tag );
+			},
+			function () use ( $tag ) {
+				return $this->get_gutenberg_packages_from_repository( $tag );
+			}
+		);
+	}
+
+	/**
+	 * @param string $tag
+	 *
+	 * @return array|null
+	 */
+	protected function get_gutenberg_packages_from_library( $tag ) {
+		$versions = $this->get_provider()->get_versions( $tag );
+		if ( isset( $versions ) ) {
+			return array_keys( $versions );
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param string $tag
+	 *
+	 * @return array|null
+	 */
+	protected function get_gutenberg_packages_from_api( $tag ) {
+		$versions = $this->get_helper()->get_remote( $this->get_api_url( null, 'tags', "{$this->get_provider()->normalize_tag($tag)}.json" ) );
+		if ( ! empty( $versions ) ) {
+			return array_keys( json_decode( $versions, true ) );
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param string $tag
+	 *
+	 * @return array
+	 */
+	protected function get_gutenberg_packages_from_repository( $tag ) {
+		$body = $this->get_helper()->get_remote( $this->get_repository_url( $tag, 'package.json' ) );
 		if ( empty( $body ) ) {
 			return [];
 		}
 
-		$dependencies = $this->helper->get_collection( json_decode( $body, true ) )->get( 'dependencies' );
-
-		return $this->helper->get_collection( $dependencies )->map( function ( $value ) {
-			return basename( $value );
+		return $this->get_helper()->get_collection( $this->get_helper()->get_collection( json_decode( $body, true ) )->get( 'dependencies' ) )->map( function ( $value ) {
+			return 'wp-' . basename( $value );
 		} )->to_array();
 	}
 
 	/**
-	 * @param $package
+	 * @param string $package
+	 * @param string|null $tag
 	 *
-	 * @return bool|string
+	 * @return false|string
 	 */
-	public function get_gutenberg_package_version( $package ) {
-		$version = $this->get_gutenberg_release_version();
-		if ( empty( $version ) ) {
+	public function get_gutenberg_package_version( $package, $tag = null ) {
+		if ( ! isset( $tag ) ) {
+			$tag = $this->get_gutenberg_tag();
+		}
+		if ( empty( $tag ) ) {
 			return false;
 		}
 
-		$body = $this->helper->get_remote( $this->get_github_url( $version, 'packages', $package, 'package.json' ) );
+		return $this->get_helper()->get_data( false,
+			function ( $data ) {
+				return false !== $data;
+			},
+			function () use ( $tag, $package ) {
+				return $this->get_gutenberg_package_version_from_library( $tag, $package );
+			},
+			function () use ( $tag, $package ) {
+				return $this->get_gutenberg_package_version_from_api( $tag, $package );
+			},
+			function () use ( $tag, $package ) {
+				return $this->get_gutenberg_package_version_from_repository( $tag, $package );
+			}
+		);
+	}
+
+	/**
+	 * @param string $tag
+	 * @param string $package
+	 *
+	 * @return false|string
+	 */
+	protected function get_gutenberg_package_version_from_library( $tag, $package ) {
+		return $this->get_provider()->get_package_version( $tag, $this->get_helper()->normalize_package( $package, 'wp-' ) );
+	}
+
+	/**
+	 * @param string $tag
+	 * @param string $package
+	 *
+	 * @return false|string
+	 */
+	protected function get_gutenberg_package_version_from_api( $tag, $package ) {
+		$versions = $this->get_helper()->get_remote( $this->get_api_url( null, 'tags', "{$this->get_provider()->normalize_tag($tag)}.json" ) );
+		if ( ! empty( $versions ) ) {
+			$versions = json_decode( $versions, true );
+			$package  = $this->get_helper()->normalize_package( $package, 'wp-' );
+			if ( isset( $versions[ $package ] ) ) {
+				return $versions[ $package ];
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param string $tag
+	 * @param string $package
+	 *
+	 * @return false|string
+	 */
+	protected function get_gutenberg_package_version_from_repository( $tag, $package ) {
+		$body = $this->get_helper()->get_remote( $this->get_repository_url( $tag, 'packages', $this->get_helper()->normalize_package( $package ), 'package.json' ) );
 		if ( empty( $body ) ) {
 			return false;
 		}
 
-		return $this->helper->get_collection( json_decode( $body, true ) )->get( 'version' );
+		return $this->get_helper()->get_collection( json_decode( $body, true ) )->get( 'version', false );
 	}
 
 	/**
@@ -143,7 +285,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 		if ( ! isset( $this->_cache_key ) ) {
 			$this->_cache_key = sha1( wp_json_encode( [
 				$this->get_helper()->get_wp_version(),
-				$this->get_gutenberg_version(),
+				$this->get_gutenberg_tag(),
 			] ) );
 		}
 

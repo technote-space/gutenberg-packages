@@ -28,6 +28,13 @@ interface GutenbergHelperInterface {
 	public function get_helper();
 
 	/**
+	 * @param string|null $target
+	 *
+	 * @return GutenbergPackageVersionProvider
+	 */
+	public function get_provider( $target = null );
+
+	/**
 	 * @return bool
 	 */
 	public function can_use_block_editor();
@@ -50,12 +57,7 @@ interface GutenbergHelperInterface {
 	/**
 	 * @return string
 	 */
-	public function get_gutenberg_version();
-
-	/**
-	 * @return false|string
-	 */
-	public function get_gutenberg_release_version();
+	public function get_gutenberg_tag();
 
 	/**
 	 * @param string $version
@@ -63,7 +65,15 @@ interface GutenbergHelperInterface {
 	 *
 	 * @return string
 	 */
-	public function get_github_url( $version, ...$append );
+	public function get_repository_url( $version, ...$append );
+
+	/**
+	 * @param string $target
+	 * @param mixed ...$append
+	 *
+	 * @return string
+	 */
+	public function get_api_url( $target, ...$append );
 
 	/**
 	 * @return array
@@ -71,11 +81,12 @@ interface GutenbergHelperInterface {
 	public function get_gutenberg_packages();
 
 	/**
-	 * @param $package
+	 * @param string $package
+	 * @param string|null $tag
 	 *
-	 * @return bool|string
+	 * @return false|string
 	 */
-	public function get_gutenberg_package_version( $package );
+	public function get_gutenberg_package_version( $package, $tag = null );
 
 	/**
 	 * @return string
