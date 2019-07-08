@@ -200,7 +200,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 		}
 
 		return $this->get_helper()->get_collection( $this->get_helper()->get_collection( json_decode( $body, true ) )->get( 'dependencies' ) )->map( function ( $value ) {
-			return 'wp-' . basename( $value );
+			return $this->get_helper()->normalize_package( basename( $value ) );
 		} )->to_array();
 	}
 
@@ -241,7 +241,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	 * @return false|string
 	 */
 	protected function get_gutenberg_package_version_from_library( $tag, $package ) {
-		return $this->get_provider()->get_package_version( $tag, $this->get_helper()->normalize_package( $package, 'wp-' ) );
+		return $this->get_provider()->get_package_version( $tag, $this->get_helper()->normalize_package( $package ) );
 	}
 
 	/**
@@ -254,7 +254,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 		$versions = $this->get_helper()->get_remote( $this->get_api_url( null, 'tags', "{$this->get_provider()->normalize_tag($tag)}.json" ) );
 		if ( ! empty( $versions ) ) {
 			$versions = json_decode( $versions, true );
-			$package  = $this->get_helper()->normalize_package( $package, 'wp-' );
+			$package  = $this->get_helper()->normalize_package( $package );
 			if ( isset( $versions[ $package ] ) ) {
 				return $versions[ $package ];
 			}
@@ -270,7 +270,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	 * @return false|string
 	 */
 	protected function get_gutenberg_package_version_from_repository( $tag, $package ) {
-		$body = $this->get_helper()->get_remote( $this->get_repository_url( $tag, 'packages', $this->get_helper()->normalize_package( $package ), 'package.json' ) );
+		$body = $this->get_helper()->get_remote( $this->get_repository_url( $tag, 'packages', $this->get_helper()->normalize_package( $package, '' ), 'package.json' ) );
 		if ( empty( $body ) ) {
 			return false;
 		}

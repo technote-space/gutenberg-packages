@@ -156,7 +156,7 @@ class Helper implements HelperInterface {
 	 *
 	 * @return string
 	 */
-	public function normalize_package( $package, $prefix = '' ) {
+	public function normalize_package( $package, $prefix = 'wp-' ) {
 		return $prefix . preg_replace( '#^\Awp-#', '', $package );
 	}
 

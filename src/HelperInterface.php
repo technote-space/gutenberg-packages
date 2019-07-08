@@ -85,7 +85,7 @@ interface HelperInterface {
 	 *
 	 * @return string
 	 */
-	public function normalize_package( $package, $prefix = '' );
+	public function normalize_package( $package, $prefix = 'wp-' );
 
 	/**
 	 * @param string $url
