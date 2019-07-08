@@ -178,7 +178,6 @@ class GutenbergPackages {
 		return false;
 	}
 
-
 	/**
 	 * @param string $package
 	 *
