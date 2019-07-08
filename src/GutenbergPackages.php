@@ -185,7 +185,7 @@ class GutenbergPackages {
 	 * @return bool
 	 */
 	public function is_support_editor_package( $package ) {
-		return $this->get_helper()->get_collection( $this->get_editor_package_versions() )->exists( $package );
+		return $this->get_helper()->get_collection( $this->get_editor_package_versions() )->exists( $this->get_helper()->normalize_package( $package ) );
 	}
 
 	/**
@@ -194,7 +194,7 @@ class GutenbergPackages {
 	 * @return string|false
 	 */
 	public function get_editor_package_version( $package ) {
-		return $this->get_helper()->get_collection( $this->get_editor_package_versions() )->get( $package, false );
+		return $this->get_helper()->get_collection( $this->get_editor_package_versions() )->get( $this->get_helper()->normalize_package( $package ), false );
 	}
 
 	/**

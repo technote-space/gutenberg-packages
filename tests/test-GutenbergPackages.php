@@ -168,6 +168,10 @@ class GutenbergPackages extends WP_UnitTestCase {
 		$this->assertTrue( static::get_instance( [
 			'can_use_block_editor' => true,
 			'is_gutenberg_active'  => false,
+		] )->is_support_editor_package( 'editor' ) );
+		$this->assertTrue( static::get_instance( [
+			'can_use_block_editor' => true,
+			'is_gutenberg_active'  => false,
 		] )->is_support_editor_package( 'wp-components' ) );
 		$this->assertEquals( version_compare( '5.2', $wp_version, '<=' ), static::get_instance( [
 			'can_use_block_editor' => true,
@@ -176,7 +180,7 @@ class GutenbergPackages extends WP_UnitTestCase {
 		$this->assertFalse( static::get_instance( [
 			'can_use_block_editor' => true,
 			'is_gutenberg_active'  => false,
-		] )->is_support_editor_package( 'test' ) );
+		] )->is_support_editor_package( 'test-package' ) );
 	}
 
 	public function test_get_editor_package_version() {
@@ -187,11 +191,15 @@ class GutenbergPackages extends WP_UnitTestCase {
 		$this->assertNotEmpty( static::get_instance( [
 			'can_use_block_editor' => true,
 			'is_gutenberg_active'  => false,
+		] )->get_editor_package_version( 'editor' ) );
+		$this->assertNotEmpty( static::get_instance( [
+			'can_use_block_editor' => true,
+			'is_gutenberg_active'  => false,
 		] )->get_editor_package_version( 'wp-components' ) );
 		$this->assertEmpty( static::get_instance( [
 			'can_use_block_editor' => true,
 			'is_gutenberg_active'  => false,
-		] )->get_editor_package_version( 'test' ) );
+		] )->get_editor_package_version( 'test-package' ) );
 	}
 
 	public function test_get_gutenberg_version() {
