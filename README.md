@@ -1,4 +1,4 @@
-# Framework Test
+# Gutenberg Packages
 
 [![Build Status](https://travis-ci.com/technote-space/gutenberg-packages.svg?branch=master)](https://travis-ci.com/technote-space/gutenberg-packages)
 [![Coverage Status](https://coveralls.io/repos/github/technote-space/gutenberg-packages/badge.svg?branch=master)](https://coveralls.io/github/technote-space/gutenberg-packages?branch=master)
@@ -12,6 +12,9 @@ Gutenberg の パッケージのバージョン取得
 ## 要件
 - PHP 5.6 以上
 - WordPress 5.0 以上
+
+## Dependency
+- [Gutenberg Package Versions](https://github.com/technote-space/gutenberg-package-versions)
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  

@@ -12,7 +12,6 @@ use Technote\Helper;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
 class TestHelper extends Helper {

@@ -13,7 +13,6 @@ use Technote\GutenbergHelper;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
 class TestGutenbergHelper extends GutenbergHelper {

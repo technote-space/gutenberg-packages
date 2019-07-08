@@ -13,7 +13,6 @@ use /** @noinspection PhpUndefinedClassInspection */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
 require_once dirname( __FILE__ ) . '/misc/GutenbergHelper.php';
