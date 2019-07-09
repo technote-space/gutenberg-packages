@@ -9,15 +9,14 @@
 
 This repository (`Gutenberg Packages`) manages versions of Gutenberg.  
 
-`Gutenberg Packages` is wrapper of [this library](https://github.com/technote-space/gutenberg-package-versions) (daily update)   
-and update package automatically every week.
+`Gutenberg Packages` is wrapper of [this library](https://github.com/technote-space/gutenberg-package-versions).
 
 `Gutenberg Packages` fetches version data from
-1. [Library]((https://github.com/technote-space/gutenberg-package-versions)) (weekly update)
+1. [Library]((https://github.com/technote-space/gutenberg-package-versions))
 2. [API](https://github.com/technote-space/gutenberg-package-versions/tree/gh-pages) (daily update)  
 3. [Gutenberg repository](https://github.com/WordPress/gutenberg)
 
-and cache for a day.  
+and cache for a week.  
 (When the state (WP Core version or Gutenberg plugin state) changes, the cache is cleared).
 
 ## Requirement

@@ -7,5 +7,5 @@ pwd)
 source ${current}/../variables.sh
 
 echo ""
-echo ">> Run composer install"
-composer install --no-dev --working-dir=${TRAVIS_BUILD_DIR}
+echo ">> Update library version"
+composer require --working-dir=${TRAVIS_BUILD_DIR} technote/gutenberg-package-versions
