@@ -238,6 +238,56 @@ class GutenbergPackages extends WP_UnitTestCase {
 	/**
 	 * @throws ReflectionException
 	 */
+	public function test_filter_packages() {
+		$this->assertEquals(
+			[
+				'wp-editor',
+				'wp-components',
+				'wp-data',
+			],
+			static::get_instance( [
+				'can_use_block_editor' => true,
+				'is_gutenberg_active'  => true,
+			] )->filter_packages( [
+				'editor',
+				'wp-editor',
+				'test-package',
+				'components',
+				'wp-data',
+				'wp-data',
+			] )
+		);
+	}
+
+	/**
+	 * @throws ReflectionException
+	 */
+	public function test_fill_package_versions() {
+		$instance = static::get_instance( [
+			'can_use_block_editor' => true,
+			'is_gutenberg_active'  => true,
+		] );
+		$versions = $instance->get_editor_package_versions();
+		$this->assertEquals(
+			[
+				'wp-editor'     => $versions['wp-editor'],
+				'wp-components' => $versions['wp-components'],
+				'wp-data'       => $versions['wp-data'],
+			],
+			$instance->fill_package_versions( [
+				'editor',
+				'wp-editor',
+				'test-package',
+				'components',
+				'wp-data',
+				'wp-data',
+			] )
+		);
+	}
+
+	/**
+	 * @throws ReflectionException
+	 */
 	public function test_get_gutenberg_version() {
 		$this->assertEmpty( static::get_instance( [
 			'can_use_block_editor' => true,
