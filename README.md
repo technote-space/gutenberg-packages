@@ -13,7 +13,7 @@ This repository (`Gutenberg Packages`) manages versions of Gutenberg.
 
 `Gutenberg Packages` fetches version data from
 1. [Library]((https://github.com/technote-space/gutenberg-package-versions))
-2. [API](https://github.com/technote-space/gutenberg-package-versions/tree/gh-pages) (daily update)  
+2. [API](https://github.com/technote-space/gutenberg-package-versions/tree/gh-pages#api) (daily update)  
 3. [Gutenberg repository](https://github.com/WordPress/gutenberg)
 
 and cache for a day.  
