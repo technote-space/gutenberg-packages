@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Helper implements HelperInterface {
 
 	/** @var int $cache_expiration */
-	private $cache_expiration = WEEK_IN_SECONDS;
+	private $cache_expiration = DAY_IN_SECONDS;
 
 	/**
 	 * @param array|Traversable $items

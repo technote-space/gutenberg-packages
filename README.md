@@ -16,7 +16,7 @@ This repository (`Gutenberg Packages`) manages versions of Gutenberg.
 2. [API](https://github.com/technote-space/gutenberg-package-versions/tree/gh-pages) (daily update)  
 3. [Gutenberg repository](https://github.com/WordPress/gutenberg)
 
-and cache for a week.  
+and cache for a day.  
 (When the state (WP Core version or Gutenberg plugin state) changes, the cache is cleared).
 
 ## Requirement
