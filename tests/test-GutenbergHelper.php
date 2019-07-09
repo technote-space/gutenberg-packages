@@ -13,10 +13,10 @@ use /** @noinspection PhpUndefinedClassInspection */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
-require_once dirname( __FILE__ ) . '/GutenbergHelper/Helper.php';
+require_once dirname( __FILE__ ) . '/misc/Helper.php';
+require_once dirname( __FILE__ ) . '/misc/GutenbergHelper.php';
 
 /**
  * @noinspection PhpUndefinedClassInspection
@@ -26,8 +26,8 @@ require_once dirname( __FILE__ ) . '/GutenbergHelper/Helper.php';
  */
 class GutenbergHelper extends WP_UnitTestCase {
 
-	private function get_instance( $plugins = [], $get_remote = null ) {
-		return new \Technote\GutenbergHelper( new TestHelper( $plugins, $get_remote ) );
+	private function get_instance( $args = [] ) {
+		return new TestGutenbergHelper( $args, new TestHelper( $args ) );
 	}
 
 	public function test_can_use_block_editor() {
@@ -56,35 +56,65 @@ class GutenbergHelper extends WP_UnitTestCase {
 
 	public function test_is_gutenberg_active() {
 		$this->assertTrue( $this->get_instance( [
-			'gutenberg/gutenberg.php',
-			'a/a.php',
+			'plugins' => [
+				'gutenberg/gutenberg.php',
+				'a/a.php',
+			],
 		] )->is_gutenberg_active() );
 
 		$this->assertFalse( $this->get_instance( [
-			'a/a.php',
-			'b/b.php',
+			'plugins' => [
+				'a/a.php',
+				'b/b.php',
+			],
 		] )->is_gutenberg_active() );
 	}
 
 	public function test_get_gutenberg_version() {
-		$this->assertEquals( '', $this->get_instance()->get_gutenberg_version() );
+		$this->assertEquals( '', $this->get_instance()->get_gutenberg_tag() );
 		$this->assertNotEmpty( $this->get_instance( [
-			'gutenberg/gutenberg.php',
-		] )->get_gutenberg_version() );
-	}
-
-	public function test_get_release_version() {
-		$this->assertNotEmpty( $this->get_instance( [ 'gutenberg/gutenberg.php' ] )->get_gutenberg_release_version() );
-		$this->assertFalse( $this->get_instance()->get_gutenberg_release_version() );
+			'plugins' => [ 'gutenberg/gutenberg.php' ],
+		] )->get_gutenberg_tag() );
 	}
 
 	public function test_get_gutenberg_packages() {
 		$this->assertEquals( [], $this->get_instance()->get_gutenberg_packages() );
+		$this->assertEquals( [], $this->get_instance( [
+			'plugins' => [ 'gutenberg/gutenberg.php' ],
+		] )->get_gutenberg_packages( '0.0.0' ) );
 	}
 
 	public function test_get_gutenberg_package_version() {
-		$this->assertFalse( $this->get_instance()->get_gutenberg_package_version( 'test' ) );
-		$this->assertFalse( $this->get_instance( [ 'gutenberg/gutenberg.php' ], false )->get_gutenberg_package_version( 'test' ) );
+		$this->assertFalse( $this->get_instance()->get_gutenberg_package_version( 'test-package' ) );
+		$this->assertFalse( $this->get_instance( [
+			'plugins'    => [ 'gutenberg/gutenberg.php' ],
+			'get_remote' => false,
+		] )->get_gutenberg_package_version( 'test-package' ) );
+		$this->assertFalse( $this->get_instance( [
+			'plugins' => [ 'gutenberg/gutenberg.php' ],
+		] )->get_gutenberg_package_version( 'test-package', '0.0.0' ) );
+
+		$this->assertNotEmpty( $this->get_instance( [
+			'plugins'                                => [ 'gutenberg/gutenberg.php' ],
+			'gutenberg_package_version_from_library' => false,
+			'gutenberg_package_version_from_api'     => false,
+		] )->get_gutenberg_package_version( 'wp-data', '5.0.0' ) );
+		$this->assertFalse( $this->get_instance( [
+			'plugins'                                => [ 'gutenberg/gutenberg.php' ],
+			'gutenberg_package_version_from_library' => false,
+			'gutenberg_package_version_from_api'     => false,
+		] )->get_gutenberg_package_version( 'test-package', '5.0.0' ) );
+		$this->assertNotEmpty( $this->get_instance( [
+			'plugins'                                => [ 'gutenberg/gutenberg.php' ],
+			'gutenberg_package_version_from_library' => false,
+		] )->get_gutenberg_package_version( 'wp-data', '5.0.0' ) );
+		$this->assertFalse( $this->get_instance( [
+			'plugins'                                => [ 'gutenberg/gutenberg.php' ],
+			'gutenberg_package_version_from_library' => false,
+		] )->get_gutenberg_package_version( 'test-package', '5.0.0' ) );
+		$this->assertNotEmpty( $this->get_instance( [
+			'plugins' => [ 'gutenberg/gutenberg.php' ],
+		] )->get_gutenberg_package_version( 'wp-data', '5.0.0' ) );
 	}
 
 }

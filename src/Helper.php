@@ -8,15 +8,14 @@
 
 namespace Technote;
 
+use Closure;
 use Generator;
 use Traversable;
-use WP_Filesystem_Direct;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
 /**
@@ -25,20 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Helper implements HelperInterface {
 
-	/** @var bool $is_multisite */
-	private $is_multisite;
-
-	/** @var WP_Filesystem_Direct $fs_cache */
-	private $fs_cache;
-
-	/**
-	 * Helper constructor.
-	 *
-	 * @param bool|null $is_multisite
-	 */
-	public function __construct( $is_multisite = null ) {
-		$this->is_multisite = isset( $is_multisite ) ? $is_multisite : is_multisite();
-	}
+	/** @var int $cache_expiration */
+	private $cache_expiration = DAY_IN_SECONDS;
 
 	/**
 	 * @param array|Traversable $items
@@ -47,6 +34,13 @@ class Helper implements HelperInterface {
 	 */
 	public function get_collection( $items ) {
 		return new Collection( $items );
+	}
+
+	/**
+	 * @param int $cache_expiration
+	 */
+	public function set_cache_expiration( $cache_expiration ) {
+		$this->cache_expiration = $cache_expiration;
 	}
 
 	/**
@@ -120,7 +114,7 @@ class Helper implements HelperInterface {
 	 */
 	public function get_active_plugins() {
 		$option = get_option( 'active_plugins', [] );
-		if ( $this->is_multisite ) {
+		if ( $this->is_multisite() ) {
 			$option = array_merge( $option, array_keys( get_site_option( 'active_sitewide_plugins' ) ) );
 			$option = array_unique( $option );
 		}
@@ -129,50 +123,37 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @return WP_Filesystem_Direct
+	 * @return bool
 	 */
-	public function get_fs() {
-		if ( ! $this->fs_cache ) {
-			// @codeCoverageIgnoreStart
-			if ( ! class_exists( '\WP_Filesystem_Base' ) ) {
-				/** @noinspection PhpIncludeInspection */
-				require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
-			}
-			if ( ! class_exists( '\WP_Filesystem_Direct' ) ) {
-				/** @noinspection PhpIncludeInspection */
-				require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
-			}
-
-			// ABSPATH . 'wp-admin/includes/file.php' WP_Filesystem
-			if ( ! defined( 'FS_CHMOD_DIR' ) ) {
-				define( 'FS_CHMOD_DIR', file_exists( ABSPATH ) ? ( fileperms( ABSPATH ) & 0777 | 0755 ) : 0755 );
-			}
-			if ( ! defined( 'FS_CHMOD_FILE' ) ) {
-				define( 'FS_CHMOD_FILE', file_exists( ABSPATH . 'index.php' ) ? ( fileperms( ABSPATH . 'index.php' ) & 0777 | 0644 ) : 0644 );
-			}
-			// @codeCoverageIgnoreEnd
-
-			$this->fs_cache = new WP_Filesystem_Direct( false );
-		}
-
-		return $this->fs_cache;
+	protected function is_multisite() {
+		return is_multisite();
 	}
 
 	/**
-	 * @param string $version
+	 * @param string $tag
 	 *
 	 * @return false|string
 	 */
-	public function get_release_version( $version ) {
-		if ( empty( $version ) ) {
+	public function get_release_tag( $tag ) {
+		if ( empty( $tag ) ) {
 			return false;
 		}
 
-		if ( preg_match( '#v?(\d+)(\.\d+)(\.\d+)?#', $version, $matches ) ) {
+		if ( preg_match( '#v?(\d+)(\.\d+)(\.\d+)?#', $tag, $matches ) ) {
 			return $matches[1] . $matches[2];
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param string $package
+	 * @param string $prefix
+	 *
+	 * @return string
+	 */
+	public function normalize_package( $package, $prefix = 'wp-' ) {
+		return $prefix . preg_replace( '#^\Awp-#', '', $package );
 	}
 
 	/**
@@ -187,6 +168,40 @@ class Helper implements HelperInterface {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param string $key
+	 * @param Closure $get_value
+	 *
+	 * @return mixed
+	 */
+	public function get_cache( $key, $get_value ) {
+		$value = get_transient( $key );
+		if ( false === $value ) {
+			$value = $get_value();
+			set_transient( $key, $value, $this->cache_expiration );
+		}
+
+		return $value;
+	}
+
+	/**
+	 * @param mixed $default
+	 * @param Closure $check
+	 * @param Closure ...$methods
+	 *
+	 * @return mixed
+	 */
+	public function get_data( $default, $check, ...$methods ) {
+		foreach ( $methods as $method ) {
+			$data = $method();
+			if ( $check( $data ) ) {
+				return $data;
+			}
+		}
+
+		return $default;
 	}
 
 }

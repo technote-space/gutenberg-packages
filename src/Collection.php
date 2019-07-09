@@ -15,7 +15,6 @@ use Traversable;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
 /**

@@ -8,15 +8,14 @@
 
 namespace Technote;
 
+use Closure;
 use Generator;
 use Traversable;
-use WP_Filesystem_Direct;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // @codeCoverageIgnoreEnd
 
 /**
@@ -31,6 +30,11 @@ interface HelperInterface {
 	 * @return Collection
 	 */
 	public function get_collection( $items );
+
+	/**
+	 * @param int $cache_expiration
+	 */
+	public function set_cache_expiration( $cache_expiration );
 
 	/**
 	 * @param string $dir
@@ -73,16 +77,19 @@ interface HelperInterface {
 	public function get_active_plugins();
 
 	/**
-	 * @return WP_Filesystem_Direct
-	 */
-	public function get_fs();
-
-	/**
 	 * @param string $version
 	 *
 	 * @return false|string
 	 */
-	public function get_release_version( $version );
+	public function get_release_tag( $version );
+
+	/**
+	 * @param string $package
+	 * @param string $prefix
+	 *
+	 * @return string
+	 */
+	public function normalize_package( $package, $prefix = 'wp-' );
 
 	/**
 	 * @param string $url
@@ -90,5 +97,22 @@ interface HelperInterface {
 	 * @return false|string
 	 */
 	public function get_remote( $url );
+
+	/**
+	 * @param string $key
+	 * @param Closure $get_value
+	 *
+	 * @return mixed
+	 */
+	public function get_cache( $key, $get_value );
+
+	/**
+	 * @param mixed $default
+	 * @param Closure $check
+	 * @param Closure ...$methods
+	 *
+	 * @return mixed
+	 */
+	public function get_data( $default, $check, ...$methods );
 
 }
