@@ -93,7 +93,7 @@ $packages->fill_package_versions( [
 ```
 
 ## Motivation
-There is no WP Core function to get version of Block Editor or its packages.  
+There is no WP Core function to get version of Block Editor packages.  
 So it is hard to consider compatibility.  
 
 For example  
@@ -101,14 +101,14 @@ Gutenberg v5.9 outputs message bellow.
 ```
 wp.editor.BlockFormatControls is deprecated and will be removed. Please use wp.blockEditor.BlockFormatControls instead.
 ```
-If your plugin uses `wp-block-editor` package, you get an error under WP v5.2.
+If your plugin uses `wp-block-editor` package like bellow, you get an error under WP v5.2.
 ```js
 const { BlockFormatControls } = wp.blockEditor;
 ```
 ```
 Uncaught TypeError: Cannot destructure property `BlockFormatControls` of 'undefined' or 'null'.
 ```
-From js, to check existence of property can solve this problem easily.
+From JavaScript, to check existence of property can solve this problem easily.
 ```js
 const { BlockFormatControls } = wp.blockEditor && wp.blockEditor.BlockEdit ? wp.blockEditor : wp.editor;
 ```
@@ -142,6 +142,39 @@ wp_enqueue_script( 'test-script', 'path/to/javascript/index.js', $packages->filt
 ```
 If you use under WP v5.1, `wp-block-editor` is filtered.  
 And if you use over WP v5.2, `wp-block-editor` is not filtered.
+
+You also able to pass package versions to JavaScript through `wp_localize_script` or `block_editor_settings`.  
+```php
+<?php
+use Technote\GutenbergPackages;
+
+$packages = new GutenbergPackages();
+
+$depends = [
+	'wp-block-editor',
+	'wp-components',
+	'wp-compose',
+	'wp-data',
+	'wp-element',
+	'wp-editor',
+];
+wp_enqueue_script( 'test-script', 'path/to/javascript/index.js', $packages->filter_packages( $depends ) );
+
+wp_localize_script( 'test-script', 'PackageVersions1', $packages->fill_package_versions( $depends) );
+// or 
+add_filter( 'block_editor_settings', function( $editor_settings ) use ( $packages, $depends ) {
+	$editor_settings['PackageVersions2'] = $packages->fill_package_versions( $depends);
+	return $editor_settings;
+} );
+```
+```js
+// JavaScript
+const { select } = wp.data;
+
+console.log( PackageVersions1 );
+// or
+console.log( select( 'core/editor' ).getEditorSettings().PackageVersions2 );
+```
 ## Dependency
 - [Gutenberg Package Versions](https://github.com/technote-space/gutenberg-package-versions)
 
