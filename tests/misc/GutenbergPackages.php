@@ -21,6 +21,7 @@ require_once dirname( __FILE__ ) . '/Testable.php';
  * Class TestGutenbergPackages
  * @property-read $wp_core_package_versions_from_library
  * @property-read $wp_core_package_versions_from_api
+ * @property-read $cache_exists
  */
 class TestGutenbergPackages extends GutenbergPackages {
 
@@ -39,8 +40,11 @@ class TestGutenbergPackages extends GutenbergPackages {
 		parent::__construct( $helper );
 		$this->setup_args( $args );
 		if ( isset( $is_admin ) ) {
-			$this->set_property( get_current_screen(), 'in_admin', $is_admin );
+			$this->set_property( 'in_admin', $is_admin, get_current_screen() );
 		}
+		$this->delete_transient( 'editor_package_versions' );
+		$this->delete_transient( 'wp_core_package_versions' );
+		$this->delete_transient( 'gutenberg_package_versions' );
 	}
 
 	/**
@@ -50,6 +54,7 @@ class TestGutenbergPackages extends GutenbergPackages {
 		return [
 			'wp_core_package_versions_from_library',
 			'wp_core_package_versions_from_api',
+			'cache_exists',
 		];
 	}
 
@@ -77,6 +82,19 @@ class TestGutenbergPackages extends GutenbergPackages {
 		}
 
 		return parent::get_wp_core_package_versions_from_api( $tag );
+	}
+
+	/**
+	 * @param string $key
+	 *
+	 * @return bool
+	 */
+	protected function cache_exists( $key ) {
+		if ( isset( $this->cache_exists ) ) {
+			return $this->cache_exists;
+		}
+
+		return parent::cache_exists( $key );
 	}
 
 }
