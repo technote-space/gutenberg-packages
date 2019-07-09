@@ -139,4 +139,32 @@ class Collection extends WP_UnitTestCase {
 			} )->to_array()
 		);
 	}
+
+	public function test_unique() {
+		$this->assertEquals(
+			[
+				0 => 1,
+				1 => 2,
+				3 => 3,
+			],
+			$this->get_collection( [ 1, 2, 2, 3, 1, 3, 3, 2 ] )->unique()->to_array()
+		);
+		$this->assertEquals( [ 1, 2, 3 ],
+			$this->get_collection( [ 1, 2, 2, 3, 1, 3, 3, 2 ] )->unique()->values()->to_array()
+		);
+		$this->assertEquals(
+			[
+				'a' => 1,
+				'c' => 2,
+			],
+			$this->get_collection(
+				[
+					'a' => 1,
+					'b' => 1,
+					'c' => 2,
+				]
+			)->unique()->to_array()
+		);
+	}
+
 }

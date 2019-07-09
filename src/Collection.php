@@ -112,4 +112,22 @@ class Collection {
 		return $this;
 	}
 
+	/**
+	 * @return $this
+	 */
+	public function unique() {
+		$this->items = array_unique( $this->items );
+
+		return $this;
+	}
+
+	/**
+	 * @return $this
+	 */
+	public function values() {
+		$this->items = array_values( $this->items );
+
+		return $this;
+	}
+
 }
