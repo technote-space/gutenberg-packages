@@ -22,7 +22,7 @@ fi
 
 echo ""
 echo ">> Commit"
-git -C ${TRAVIS_BUILD_DIR} add -a
+git -C ${TRAVIS_BUILD_DIR} add --all
 git -C ${TRAVIS_BUILD_DIR} status --short
 git -C ${TRAVIS_BUILD_DIR} commit -m "${COMMIT_MESSAGE}"
 
