@@ -28,6 +28,7 @@ require_once dirname( __FILE__ ) . '/Testable.php';
  * @property-read $gutenberg_package_version_from_api
  * @property-read $gutenberg_absolute_path
  * @property-read $gutenberg_package_version
+ * @property-read $cache_key
  */
 class TestGutenbergHelper extends GutenbergHelper {
 
@@ -58,6 +59,7 @@ class TestGutenbergHelper extends GutenbergHelper {
 			'gutenberg_package_version_from_api',
 			'gutenberg_absolute_path',
 			'gutenberg_package_version',
+			'cache_key',
 		];
 	}
 
@@ -174,6 +176,17 @@ class TestGutenbergHelper extends GutenbergHelper {
 		}
 
 		return parent::get_gutenberg_package_version_from_api( $tag, $package );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_cache_key() {
+		if ( isset( $this->cache_key ) ) {
+			return $this->cache_key;
+		}
+
+		return parent::get_cache_key();
 	}
 
 }

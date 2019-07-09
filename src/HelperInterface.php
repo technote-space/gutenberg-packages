@@ -100,11 +100,12 @@ interface HelperInterface {
 
 	/**
 	 * @param string $key
+	 * @param string $cache_key
 	 * @param Closure $get_value
 	 *
 	 * @return mixed
 	 */
-	public function get_cache( $key, $get_value );
+	public function get_cache( $key, $cache_key, $get_value );
 
 	/**
 	 * @param mixed $default

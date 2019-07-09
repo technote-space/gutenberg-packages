@@ -8,6 +8,7 @@
 
 namespace Technote;
 
+use Closure;
 use WP_Scripts;
 
 // @codeCoverageIgnoreStart
@@ -25,7 +26,7 @@ class GutenbergPackages {
 	/** @var GutenbergHelperInterface $helper */
 	private $helper;
 
-	/** @var array|false $cache */
+	/** @var array $cache */
 	private $cache;
 
 	/**
@@ -70,6 +71,29 @@ class GutenbergPackages {
 	}
 
 	/**
+	 * @param string $key
+	 *
+	 * @return bool
+	 */
+	protected function cache_exists( $key ) {
+		return isset( $this->cache[ $key ] );
+	}
+
+	/**
+	 * @param string $key
+	 * @param Closure $get_value
+	 *
+	 * @return mixed
+	 */
+	protected function cache_get( $key, $get_value ) {
+		if ( ! $this->cache_exists( $key ) ) {
+			$this->cache[ $key ] = $this->get_gutenberg_helper()->get_cache( $key, $get_value );
+		}
+
+		return $this->cache[ $key ];
+	}
+
+	/**
 	 * @return array|false
 	 */
 	public function get_editor_package_versions() {
@@ -77,23 +101,19 @@ class GutenbergPackages {
 			return [];
 		}
 
-		if ( ! isset( $this->cache ) ) {
-			$this->cache = $this->get_gutenberg_helper()->get_cache( function () {
-				return $this->get_helper()->get_data( false,
-					function ( $data ) {
-						return false !== $data;
-					},
-					function () {
-						return $this->get_gutenberg_package_versions();
-					},
-					function () {
-						return $this->get_wp_core_package_versions();
-					}
-				);
-			} );
-		}
-
-		return $this->cache;
+		return $this->cache_get( 'editor_package_versions', function () {
+			return $this->get_helper()->get_data( false,
+				function ( $data ) {
+					return false !== $data;
+				},
+				function () {
+					return $this->get_gutenberg_package_versions();
+				},
+				function () {
+					return $this->get_wp_core_package_versions();
+				}
+			);
+		} );
 	}
 
 	/**
@@ -102,20 +122,22 @@ class GutenbergPackages {
 	public function get_wp_core_package_versions() {
 		$tag = $this->get_gutenberg_helper()->get_provider()->normalize_tag( $this->get_helper()->get_wp_version() );
 
-		return $this->get_helper()->get_data( [],
-			function ( $data ) {
-				return is_array( $data );
-			},
-			function () use ( $tag ) {
-				return $this->get_wp_core_package_versions_from_library( $tag );
-			},
-			function () use ( $tag ) {
-				return $this->get_wp_core_package_versions_from_api( $tag );
-			},
-			function () {
-				return $this->get_wp_core_package_versions_from_repository();
-			}
-		);
+		return $this->cache_get( 'wp_core_package_versions', function () use ( $tag ) {
+			return $this->get_helper()->get_data( [],
+				function ( $data ) {
+					return is_array( $data );
+				},
+				function () use ( $tag ) {
+					return $this->get_wp_core_package_versions_from_library( $tag );
+				},
+				function () use ( $tag ) {
+					return $this->get_wp_core_package_versions_from_api( $tag );
+				},
+				function () {
+					return $this->get_wp_core_package_versions_from_repository();
+				}
+			);
+		} );
 	}
 
 	/**
@@ -155,19 +177,21 @@ class GutenbergPackages {
 	 */
 	public function get_gutenberg_package_versions() {
 		if ( $this->get_gutenberg_helper()->is_gutenberg_active() ) {
-			return $this->get_helper()->get_collection( $this->get_gutenberg_helper()->get_gutenberg_packages() )->map( function ( $package ) {
-				$version = $this->get_gutenberg_helper()->get_gutenberg_package_version( $package );
-				if ( empty( $version ) ) {
-					return false;
-				}
+			return $this->cache_get( 'gutenberg_package_versions', function () {
+				return $this->get_helper()->get_collection( $this->get_gutenberg_helper()->get_gutenberg_packages() )->map( function ( $package ) {
+					$version = $this->get_gutenberg_helper()->get_gutenberg_package_version( $package );
+					if ( empty( $version ) ) {
+						return false;
+					}
 
-				return [
-					'package' => $package,
-					'version' => $version,
-				];
-			} )->filter( function ( $data ) {
-				return false !== $data;
-			} )->combine( 'package', 'version' );
+					return [
+						'package' => $package,
+						'version' => $version,
+					];
+				} )->filter( function ( $data ) {
+					return false !== $data;
+				} )->combine( 'package', 'version' );
+			} );
 		}
 
 		return false;

@@ -94,10 +94,11 @@ interface GutenbergHelperInterface {
 	public function get_cache_key();
 
 	/**
+	 * @param string $key
 	 * @param Closure $get_value
 	 *
 	 * @return mixed
 	 */
-	public function get_cache( $get_value );
+	public function get_cache( $key, $get_value );
 
 }

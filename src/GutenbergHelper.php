@@ -66,7 +66,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	 *
 	 * @return string
 	 */
-	private function normalize_target( $target ) {
+	protected function normalize_target( $target ) {
 		if ( ! isset( $target ) ) {
 			$target = 'gutenberg';
 		} elseif ( 'gutenberg' !== $target ) {
@@ -282,23 +282,31 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	 * @return string
 	 */
 	public function get_cache_key() {
-		if ( ! isset( $this->_cache_key ) ) {
-			$this->_cache_key = sha1( wp_json_encode( [
-				$this->get_helper()->get_wp_version(),
-				$this->get_gutenberg_tag(),
-			] ) );
+		if ( ! isset( $this->cache_key ) ) {
+			$this->cache_key = $this->generate_cache_key();
 		}
 
 		return $this->cache_key;
 	}
 
 	/**
+	 * @return string
+	 */
+	protected function generate_cache_key() {
+		return sha1( wp_json_encode( [
+			$this->get_helper()->get_wp_version(),
+			$this->get_gutenberg_tag(),
+		] ) );
+	}
+
+	/**
+	 * @param string $key
 	 * @param Closure $get_value
 	 *
 	 * @return mixed
 	 */
-	public function get_cache( $get_value ) {
-		return $this->get_helper()->get_cache( $this->get_cache_key(), $get_value );
+	public function get_cache( $key, $get_value ) {
+		return $this->get_helper()->get_cache( $key, $this->get_cache_key(), $get_value );
 	}
 
 }

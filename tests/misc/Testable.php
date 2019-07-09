@@ -37,18 +37,35 @@ trait Testable {
 	}
 
 	/**
-	 * @param $target
+	 * @param array $args
+	 */
+	public function reset_args( array $args ) {
+		$this->setup_args( $args );
+	}
+
+	/**
 	 * @param $name
 	 * @param $value
+	 * @param $target
 	 *
 	 * @throws ReflectionException
 	 */
-	private function set_property( $target, $name, $value ) {
+	public function set_property( $name, $value, $target = null ) {
+		if ( ! isset( $target ) ) {
+			$target = $this;
+		}
 		$reflection = new ReflectionClass( $target );
 		$property   = $reflection->getProperty( $name );
 		$property->setAccessible( true );
 		$property->setValue( $target, $value );
 		$property->setAccessible( false );
+	}
+
+	/**
+	 * @param string $key
+	 */
+	private function delete_transient( $key ) {
+		delete_transient( 'Technote/GutenbergPackages/' . $key );
 	}
 
 }

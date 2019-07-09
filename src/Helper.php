@@ -172,18 +172,32 @@ class Helper implements HelperInterface {
 
 	/**
 	 * @param string $key
+	 *
+	 * @return string
+	 */
+	protected function get_transient_key( $key ) {
+		return 'Technote/GutenbergPackages/' . $key;
+	}
+
+	/**
+	 * @param string $key
+	 * @param string $cache_key
 	 * @param Closure $get_value
 	 *
 	 * @return mixed
 	 */
-	public function get_cache( $key, $get_value ) {
+	public function get_cache( $key, $cache_key, $get_value ) {
+		$key   = $this->get_transient_key( $key );
 		$value = get_transient( $key );
-		if ( false === $value ) {
-			$value = $get_value();
+		if ( ! isset( $value['cache_key'] ) || $cache_key !== $value['cache_key'] ) {
+			$value = [
+				'cache_key' => $cache_key,
+				'value'     => $get_value(),
+			];
 			set_transient( $key, $value, $this->cache_expiration );
 		}
 
-		return $value;
+		return $value['value'];
 	}
 
 	/**
