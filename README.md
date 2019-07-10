@@ -123,6 +123,7 @@ wp_enqueue_script( 'test-script', 'path/to/javascript/index.js', [
 	'wp-compose',
 	'wp-element',
 	'wp-editor',
+	'lodash',
 ] );
 ```
 
@@ -138,7 +139,7 @@ wp_enqueue_script( 'test-script', 'path/to/javascript/index.js', $packages->filt
 	'wp-compose',
 	'wp-element',
 	'wp-editor',
-] ) );
+], [ 'lodash' ] ) );
 ```
 If you use under WP v5.1, `wp-block-editor` is filtered.  
 And if you use over WP v5.2, `wp-block-editor` is not filtered.
@@ -158,7 +159,7 @@ $depends = [
 	'wp-element',
 	'wp-editor',
 ];
-wp_enqueue_script( 'test-script', 'path/to/javascript/index.js', $packages->filter_packages( $depends ) );
+wp_enqueue_script( 'test-script', 'path/to/javascript/index.js', $packages->filter_packages( $depends, [ 'lodash' ] ) );
 wp_localize_script( 'test-script', 'PackageVersions', $packages->fill_package_versions( $depends) );
 ```
 ```js

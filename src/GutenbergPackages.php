@@ -217,15 +217,16 @@ class GutenbergPackages {
 
 	/**
 	 * @param array $packages
+	 * @param array $merge
 	 *
 	 * @return array
 	 */
-	public function filter_packages( array $packages ) {
+	public function filter_packages( array $packages, array $merge = [] ) {
 		return $this->get_helper()->get_collection( $packages )->filter( function ( $package ) {
 			return $this->is_support_editor_package( $package );
 		} )->map( function ( $package ) {
 			return $this->get_helper()->normalize_package( $package );
-		} )->unique()->values()->to_array();
+		} )->merge( $merge )->unique()->values()->to_array();
 	}
 
 	/**

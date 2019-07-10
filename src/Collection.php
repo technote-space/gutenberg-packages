@@ -130,4 +130,17 @@ class Collection {
 		return $this;
 	}
 
+	/**
+	 * @param array $items
+	 *
+	 * @return $this
+	 */
+	public function merge( array $items ) {
+		if ( ! empty( $items ) ) {
+			$this->items = array_merge( $this->items, $items );
+		}
+
+		return $this;
+	}
+
 }

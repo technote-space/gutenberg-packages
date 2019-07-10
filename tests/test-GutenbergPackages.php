@@ -271,6 +271,30 @@ class GutenbergPackages extends WP_UnitTestCase {
 				'wp-data',
 			] )
 		);
+		$this->assertEquals(
+			[
+				'wp-editor',
+				'wp-components',
+				'wp-data',
+				'lodash',
+			],
+			$this->get_instance( [
+				'can_use_block_editor' => true,
+				'is_gutenberg_active'  => true,
+			] )->filter_packages(
+				[
+					'editor',
+					'wp-editor',
+					'test-package',
+					'components',
+					'wp-data',
+					'wp-data',
+				],
+				[
+					'lodash',
+				]
+			)
+		);
 	}
 
 	/**
