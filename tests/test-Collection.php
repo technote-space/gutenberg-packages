@@ -167,4 +167,38 @@ class Collection extends WP_UnitTestCase {
 		);
 	}
 
+	public function test_merge() {
+		$this->assertEquals( [ 1, 2, 3 ],
+			$this->get_collection( [ 1, 2, 3 ] )->merge( [] )->to_array()
+		);
+
+		$this->assertEquals(
+			[ 1, 2, 3, 4, 1, 3, 5, 1 ],
+			$this->get_collection(
+				[ 1, 2, 3, 4 ]
+			)->merge( [ 1, 3, 5, 1 ] )->to_array()
+		);
+
+		$this->assertEquals(
+			[
+				'a' => 'test1',
+				'b' => 'test4',
+				'c' => 'test3',
+				'd' => 'test5',
+			],
+			$this->get_collection(
+				[
+					'a' => 'test1',
+					'b' => 'test2',
+					'c' => 'test3',
+				]
+			)->merge(
+				[
+					'b' => 'test4',
+					'd' => 'test5',
+				]
+			)->to_array()
+		);
+	}
+
 }
