@@ -143,7 +143,7 @@ wp_enqueue_script( 'test-script', 'path/to/javascript/index.js', $packages->filt
 If you use under WP v5.1, `wp-block-editor` is filtered.  
 And if you use over WP v5.2, `wp-block-editor` is not filtered.
 
-You also able to pass package versions to JavaScript through `wp_localize_script` or `block_editor_settings`.  
+You can also pass the package versions to JavaScript via `wp_localize_script`.  
 ```php
 <?php
 use Technote\GutenbergPackages;
@@ -159,21 +159,11 @@ $depends = [
 	'wp-editor',
 ];
 wp_enqueue_script( 'test-script', 'path/to/javascript/index.js', $packages->filter_packages( $depends ) );
-
-wp_localize_script( 'test-script', 'PackageVersions1', $packages->fill_package_versions( $depends) );
-// or 
-add_filter( 'block_editor_settings', function( $editor_settings ) use ( $packages, $depends ) {
-	$editor_settings['PackageVersions2'] = $packages->fill_package_versions( $depends);
-	return $editor_settings;
-} );
+wp_localize_script( 'test-script', 'PackageVersions', $packages->fill_package_versions( $depends) );
 ```
 ```js
 // JavaScript
-const { select } = wp.data;
-
-console.log( PackageVersions1 );
-// or
-console.log( select( 'core/editor' ).getEditorSettings().PackageVersions2 );
+console.log( PackageVersions );
 ```
 ## Dependency
 - [Gutenberg Package Versions](https://github.com/technote-space/gutenberg-package-versions)
