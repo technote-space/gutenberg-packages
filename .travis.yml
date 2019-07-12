@@ -147,7 +147,9 @@ jobs:
     - stage: update
       language: php
       php: '7.2'
-      script: bash bin/update.sh
+      script:
+        - bash bin/update/prepare.sh
+        - bash travis-ci/bin/update/commit.sh
 
 
     - stage: deploy
