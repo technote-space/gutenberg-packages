@@ -40,8 +40,8 @@ before_install:
   - if [[ "${TRAVIS_BUILD_STAGE_NAME}" == "Update" ]]; then git config --global url."git@github.com:".insteadOf "https://github.com/"; fi
 
 before_script:
-  - if [[ "${TRAVIS_BUILD_STAGE_NAME}" != "Update" ]]; then git clone --depth=1 https://github.com/wp-content-framework/travis-ci.git travis-ci; fi
-  - if [[ "${TRAVIS_BUILD_STAGE_NAME}" != "Update" ]]; then bash travis-ci/bin/prepare.sh install; fi
+  - git clone --depth=1 https://github.com/wp-content-framework/travis-ci.git travis-ci
+  - bash travis-ci/bin/prepare.sh install
 
 jobs:
   fast_finish: true
