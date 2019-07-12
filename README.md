@@ -23,7 +23,7 @@ and cache for a day.
 - \>= PHP 5.6
 - \>= WordPress v5.0
 
-## Install
+## Installation
 ```bash
 composer require technote/gutenberg-packages
 ```
