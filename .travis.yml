@@ -156,7 +156,6 @@ jobs:
       dist: trusty
       script: skip
       before_deploy:
-        - source bin/deploy/env.sh
         - source travis-ci/bin/deploy/env.sh
         - bash travis-ci/bin/deploy/create.sh
       deploy:
