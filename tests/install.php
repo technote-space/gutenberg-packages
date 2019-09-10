@@ -18,11 +18,3 @@ if ( file_exists( "{$plugins_dir}/gutenberg" ) ) {
 		symlink( "{$plugins_dir}/gutenberg", "{$test_plugins_dir}/gutenberg" );
 	}
 }
-
-function filter_plugin( $item ) {
-	if ( 'gutenberg' !== $item ) {
-		return true;
-	}
-
-	return getenv( 'ACTIVATE_GUTENBERG' );
-}
