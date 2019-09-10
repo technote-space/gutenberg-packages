@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": ">=5.6",
-    "technote/gutenberg-package-versions": "^0.1.16"
+    "technote/gutenberg-package-versions": "^0.2.0"
   },
   "autoload": {
     "psr-4": {
@@ -32,28 +32,40 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
     "roave/security-advisories": "dev-master",
     "php-coveralls/php-coveralls": "^2.1",
-    "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5"
+    "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5"
   },
   "scripts": {
     "setup": [
-      "composer install --no-dev"
+      "@prepare"
+    ],
+    "prepare": [
+      "@prepare:php"
+    ],
+    "prepare:php": [
+      "composer install --no-interaction --prefer-dist --no-suggest"
     ],
     "test": [
-      "@phpcs",
-      "@phpmd",
-      "@phpunit"
+      "@stage-lint",
+      "@stage-test"
     ],
-    "phpunit": [
-      "phpunit"
+    "stage-lint": [
+      "@phpcs",
+      "@phpmd"
+    ],
+    "stage-test": [
+      "@bin:wp-test-p2"
     ],
     "phpcs": [
       "phpcs --standard=./phpcs.xml"
     ],
-    "fix": [
-      "phpcbf --standard=./phpcs.xml"
-    ],
     "phpmd": [
       "phpmd ./src/,./tests/ text phpmd.xml"
+    ],
+    "phpunit": [
+      "phpunit --stop-on-failure --colors=always"
+    ],
+    "phpunit:no": [
+      "@phpunit --no-coverage"
     ],
     "coveralls": [
       "php-coveralls -v"
