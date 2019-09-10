@@ -10,7 +10,6 @@ namespace Technote\Tests;
 
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
-use Technote\GutenbergHelperInterface;
 use Technote\Tests\Misc\TestGutenbergHelper;
 use Technote\Tests\Misc\TestGutenbergPackages;
 use /** @noinspection PhpUndefinedClassInspection */
