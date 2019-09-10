@@ -68,8 +68,14 @@ jobs:
     strategy:
       matrix:
         php: ['7.0', '7.3', '5.6']
-        WP_VERSION: ['latest', '5.0', 'trunk']
-        WP_MULTISITE: ['0', '1']
+        WP_VERSION: ['latest', 'trunk']
+        include:
+          - php: '7.3'
+            WP_VERSION: 'latest'
+            WP_MULTISITE: '1'
+          - php: '5.6'
+            WP_VERSION: 'trunk'
+            WP_MULTISITE: '1'
     steps:
       - uses: actions/checkout@v1
         with:
