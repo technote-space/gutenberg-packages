@@ -24,6 +24,11 @@
       "Technote\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Technote\\Tests\\": "tests/"
+    }
+  },
   "require-dev": {
     "squizlabs/php_codesniffer": "*",
     "wp-coding-standards/wpcs": "*",

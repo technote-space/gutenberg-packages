@@ -6,6 +6,11 @@
  * @link https://technote.space
  */
 
+namespace Technote\Tests\Misc;
+
+use ReflectionClass;
+use ReflectionException;
+
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

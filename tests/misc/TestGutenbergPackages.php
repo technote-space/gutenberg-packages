@@ -6,6 +6,9 @@
  * @link https://technote.space
  */
 
+namespace Technote\Tests\Misc;
+
+use ReflectionException;
 use Technote\GutenbergHelperInterface;
 use Technote\GutenbergPackages;
 
@@ -14,8 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 // @codeCoverageIgnoreEnd
-
-require_once dirname( __FILE__ ) . '/Testable.php';
 
 /**
  * Class TestGutenbergPackages

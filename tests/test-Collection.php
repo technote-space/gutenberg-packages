@@ -6,7 +6,11 @@
  * @link https://technote.space
  */
 
+namespace Technote\Tests;
+
 use PHPUnit\Framework\TestCase;
+use /** @noinspection PhpUndefinedClassInspection */
+	WP_UnitTestCase;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
