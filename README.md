@@ -1,5 +1,6 @@
 # Gutenberg Packages
 
+[![Build Status](https://github.com/technote-space/gutenberg-packages/workflows/Build/badge.svg)](https://github.com/technote-space/gutenberg-packages/actions)
 [![Build Status](https://travis-ci.com/technote-space/gutenberg-packages.svg?branch=master)](https://travis-ci.com/technote-space/gutenberg-packages)
 [![Coverage Status](https://coveralls.io/repos/github/technote-space/gutenberg-packages/badge.svg?branch=master)](https://coveralls.io/github/technote-space/gutenberg-packages?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/gutenberg-packages/badge)](https://www.codefactor.io/repository/github/technote-space/gutenberg-packages)
@@ -18,6 +19,9 @@ This repository (`Gutenberg Packages`) manages versions of Gutenberg.
 
 and cache for a day.  
 (When the state (WP Core version or Gutenberg plugin state) changes, the cache is cleared).
+
+<!-- START doctoc -->
+<!-- END doctoc -->
 
 ## Requirement
 - \>= PHP 5.6
