@@ -6,17 +6,20 @@
  * @link https://technote.space
  */
 
+namespace Technote\Tests;
+
+use PHPUnit\Framework\TestCase;
+use ReflectionException;
+use Technote\Tests\Misc\TestGutenbergHelper;
+use Technote\Tests\Misc\TestGutenbergPackages;
 use /** @noinspection PhpUndefinedClassInspection */
-	PHPUnit\Framework\TestCase;
+	WP_UnitTestCase;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 // @codeCoverageIgnoreEnd
-
-require_once dirname( __FILE__ ) . '/misc/GutenbergPackages.php';
-require_once dirname( __FILE__ ) . '/misc/GutenbergHelper.php';
 
 /**
  * @noinspection PhpUndefinedClassInspection
@@ -56,7 +59,7 @@ class GutenbergPackages extends WP_UnitTestCase {
 	 * @throws ReflectionException
 	 */
 	public function test_get_gutenberg_helper() {
-		$this->assertInstanceOf( 'TestGutenbergHelper', $this->get_instance()->get_gutenberg_helper() );
+		$this->assertInstanceOf( '\Technote\Tests\Misc\TestGutenbergHelper', $this->get_instance()->get_gutenberg_helper() );
 	}
 
 	/**

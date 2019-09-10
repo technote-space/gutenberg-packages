@@ -6,7 +6,12 @@
  * @link https://technote.space
  */
 
+namespace Technote\Tests;
+
 use PHPUnit\Framework\TestCase;
+use Technote\Collection as CollectionClass;
+use /** @noinspection PhpUndefinedClassInspection */
+	WP_UnitTestCase;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Collection extends WP_UnitTestCase {
 
 	private function get_collection( $items ) {
-		return new \Technote\Collection( $items );
+		return new CollectionClass( $items );
 	}
 
 	public function test_to_array() {

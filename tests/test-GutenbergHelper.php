@@ -6,17 +6,19 @@
  * @link https://technote.space
  */
 
+namespace Technote\Tests;
+
+use PHPUnit\Framework\TestCase;
+use Technote\Tests\Misc\TestGutenbergHelper;
+use Technote\Tests\Misc\TestHelper;
 use /** @noinspection PhpUndefinedClassInspection */
-	PHPUnit\Framework\TestCase;
+	WP_UnitTestCase;
 
 // @codeCoverageIgnoreStart
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 // @codeCoverageIgnoreEnd
-
-require_once dirname( __FILE__ ) . '/misc/Helper.php';
-require_once dirname( __FILE__ ) . '/misc/GutenbergHelper.php';
 
 /**
  * @noinspection PhpUndefinedClassInspection
@@ -34,16 +36,16 @@ class GutenbergHelper extends WP_UnitTestCase {
 		global $wp_version;
 		$tmp = $wp_version;
 
-		$wp_version = '4.9';
+		$wp_version = '4.9'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		$this->assertFalse( $this->get_instance()->can_use_block_editor() );
 
-		$wp_version = '5.0';
+		$wp_version = '5.0'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		$this->assertTrue( $this->get_instance()->can_use_block_editor() );
 
-		$wp_version = '5.0.0';
+		$wp_version = '5.0.0'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		$this->assertTrue( $this->get_instance()->can_use_block_editor() );
 
-		$wp_version = $tmp;
+		$wp_version = $tmp; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	}
 
 	public function test_get_gutenberg_file() {

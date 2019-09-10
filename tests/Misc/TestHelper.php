@@ -6,6 +6,8 @@
  * @link https://technote.space
  */
 
+namespace Technote\Tests\Misc;
+
 use Technote\Helper;
 
 // @codeCoverageIgnoreStart
@@ -13,8 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 // @codeCoverageIgnoreEnd
-
-require_once dirname( __FILE__ ) . '/Testable.php';
 
 /**
  * Class TestHelper
