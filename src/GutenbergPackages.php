@@ -179,15 +179,7 @@ class GutenbergPackages {
 		if ( $this->get_gutenberg_helper()->is_gutenberg_active() ) {
 			return $this->cache_get( 'gutenberg_package_versions', function () {
 				return $this->get_helper()->get_collection( $this->get_gutenberg_helper()->get_gutenberg_packages() )->map( function ( $package ) {
-					$version = $this->get_gutenberg_helper()->get_gutenberg_package_version( $package );
-					if ( empty( $version ) ) {
-						return false;
-					}
-
-					return [
-						'package' => $package,
-						'version' => $version,
-					];
+					return $this->map_package_info( $package );
 				} )->filter( function ( $data ) {
 					return false !== $data;
 				} )->combine( 'package', 'version' );
@@ -195,6 +187,23 @@ class GutenbergPackages {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param string $package
+	 *
+	 * @return array|false
+	 */
+	private function map_package_info( $package ) {
+		$version = $this->get_gutenberg_helper()->get_gutenberg_package_version( $package );
+		if ( empty( $version ) ) {
+			return false;
+		}
+
+		return [
+			'package' => $package,
+			'version' => $version,
+		];
 	}
 
 	/**
