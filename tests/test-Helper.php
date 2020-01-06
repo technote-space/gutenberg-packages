@@ -42,7 +42,7 @@ class Helper extends WP_UnitTestCase {
 		$count = 0;
 		foreach ( $this->get_instance()->dirlist( dirname( __DIR__ ) ) as $item ) {
 			$this->assertTrue( is_dir( $item ) );
-			$count++;
+			$count ++;
 		}
 		$this->assertNotEmpty( $count );
 	}
@@ -88,15 +88,21 @@ class Helper extends WP_UnitTestCase {
 	public function test_is_plugin_active() {
 		$tmp1 = get_option( 'active_plugins', [] );
 		$tmp2 = get_site_option( 'active_sitewide_plugins', [] );
-		update_option( 'active_plugins', [
-			'a/a.php',
-			'b/b.php',
-			'c/c.php',
-		] );
-		update_site_option( 'active_sitewide_plugins', [
-			'b/b.php' => 'b/b.php',
-			'd/d.php' => 'd/d.php',
-		] );
+		update_option(
+			'active_plugins',
+			[
+				'a/a.php',
+				'b/b.php',
+				'c/c.php',
+			]
+		);
+		update_site_option(
+			'active_sitewide_plugins',
+			[
+				'b/b.php' => 'b/b.php',
+				'd/d.php' => 'd/d.php',
+			]
+		);
 
 		$this->assertTrue( $this->get_instance()->is_plugin_active( 'a/a.php' ) );
 		$this->assertTrue( $this->get_instance()->is_plugin_active( 'b/b.php' ) );
@@ -114,28 +120,40 @@ class Helper extends WP_UnitTestCase {
 	public function test_get_active_plugins() {
 		$tmp1 = get_option( 'active_plugins', [] );
 		$tmp2 = get_site_option( 'active_sitewide_plugins', [] );
-		update_option( 'active_plugins', [
-			'a/a.php',
-			'b/b.php',
-			'c/c.php',
-		] );
-		update_site_option( 'active_sitewide_plugins', [
-			'b/b.php' => 'b/b.php',
-			'd/d.php' => 'd/d.php',
-		] );
+		update_option(
+			'active_plugins',
+			[
+				'a/a.php',
+				'b/b.php',
+				'c/c.php',
+			]
+		);
+		update_site_option(
+			'active_sitewide_plugins',
+			[
+				'b/b.php' => 'b/b.php',
+				'd/d.php' => 'd/d.php',
+			]
+		);
 
-		$this->assertEquals( [
-			'a/a.php',
-			'b/b.php',
-			'c/c.php',
-			'd/d.php',
-		], $this->get_instance( true )->get_active_plugins() );
+		$this->assertEquals(
+			[
+				'a/a.php',
+				'b/b.php',
+				'c/c.php',
+				'd/d.php',
+			],
+			$this->get_instance( true )->get_active_plugins()
+		);
 
-		$this->assertEquals( [
-			'a/a.php',
-			'b/b.php',
-			'c/c.php',
-		], $this->get_instance( false )->get_active_plugins() );
+		$this->assertEquals(
+			[
+				'a/a.php',
+				'b/b.php',
+				'c/c.php',
+			],
+			$this->get_instance( false )->get_active_plugins()
+		);
 
 		update_option( 'active_plugins', $tmp1 );
 		update_site_option( 'active_sitewide_plugins', $tmp2 );

@@ -31,7 +31,7 @@ class Collection {
 	/**
 	 * Collection constructor.
 	 *
-	 * @param array|Traversable $items
+	 * @param  array|Traversable  $items
 	 */
 	public function __construct( $items ) {
 		$this->items = $items instanceof Traversable ? iterator_to_array( $items ) : $items;
@@ -45,19 +45,22 @@ class Collection {
 	}
 
 	/**
-	 * @param string $key
+	 * @param  string  $key
 	 *
 	 * @return array
 	 */
 	public function pluck( $key ) {
-		return array_map( function ( $item ) use ( $key ) {
-			return $item[ $key ];
-		}, $this->items );
+		return array_map(
+			function ( $item ) use ( $key ) {
+				return $item[ $key ];
+			},
+			$this->items
+		);
 	}
 
 	/**
-	 * @param string $key
-	 * @param string $value
+	 * @param  string  $key
+	 * @param  string  $value
 	 *
 	 * @return array
 	 */
@@ -66,8 +69,8 @@ class Collection {
 	}
 
 	/**
-	 * @param string $key
-	 * @param mixed $default
+	 * @param  string  $key
+	 * @param  mixed  $default
 	 *
 	 * @return mixed
 	 */
@@ -76,7 +79,7 @@ class Collection {
 	}
 
 	/**
-	 * @param string $key
+	 * @param  string  $key
 	 *
 	 * @return bool
 	 */
@@ -85,7 +88,7 @@ class Collection {
 	}
 
 	/**
-	 * @param Closure $callback
+	 * @param  Closure  $callback
 	 *
 	 * @return $this
 	 */
@@ -100,7 +103,7 @@ class Collection {
 	}
 
 	/**
-	 * @param Closure $callback
+	 * @param  Closure  $callback
 	 *
 	 * @return $this
 	 */
@@ -131,7 +134,7 @@ class Collection {
 	}
 
 	/**
-	 * @param array $items
+	 * @param  array  $items
 	 *
 	 * @return $this
 	 */

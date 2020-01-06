@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": ">=5.6",
-    "technote/gutenberg-package-versions": "^0.2.0"
+    "technote/gutenberg-package-versions": "^0.2.17"
   },
   "autoload": {
     "psr-4": {
@@ -32,11 +32,10 @@
   "require-dev": {
     "squizlabs/php_codesniffer": "*",
     "wp-coding-standards/wpcs": "*",
-    "phpmd/phpmd": "^2.6",
+    "phpmd/phpmd": "^2.8",
     "phpcompatibility/phpcompatibility-wp": "*",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
     "roave/security-advisories": "dev-master",
-    "php-coveralls/php-coveralls": "^2.1",
     "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5"
   },
   "scripts": {
@@ -64,16 +63,13 @@
       "phpcs --standard=./phpcs.xml"
     ],
     "phpmd": [
-      "phpmd ./src/,./tests/ text phpmd.xml"
+      "phpmd ./src/,./tests/ ansi phpmd.xml"
     ],
     "phpunit": [
       "phpunit --stop-on-failure --colors=always"
     ],
     "phpunit:no": [
       "@phpunit --no-coverage"
-    ],
-    "coveralls": [
-      "php-coveralls -v"
     ],
     "bin:wp-test": "TRAVIS_BUILD_DIR=$(cd $(dirname $0); pwd) ./travis-ci/bin/php/wp-test.sh",
     "bin:wp-test-p": "TRAVIS_BUILD_DIR=$(cd $(dirname $0); pwd) ACTIVATE_POPULAR_PLUGINS=1 IGNORE_GUTENBERG_VERSION=1 ./travis-ci/bin/php/wp-test.sh",

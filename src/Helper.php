@@ -28,7 +28,7 @@ class Helper implements HelperInterface {
 	private $cache_expiration = DAY_IN_SECONDS;
 
 	/**
-	 * @param array|Traversable $items
+	 * @param  array|Traversable  $items
 	 *
 	 * @return Collection
 	 */
@@ -37,14 +37,14 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param int $cache_expiration
+	 * @param  int  $cache_expiration
 	 */
 	public function set_cache_expiration( $cache_expiration ) {
 		$this->cache_expiration = $cache_expiration;
 	}
 
 	/**
-	 * @param string $dir
+	 * @param  string  $dir
 	 *
 	 * @return Generator
 	 */
@@ -65,8 +65,8 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param string $haystack
-	 * @param string $needle
+	 * @param  string  $haystack
+	 * @param  string  $needle
 	 *
 	 * @return bool
 	 */
@@ -91,8 +91,8 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param string $version
-	 * @param string $operator
+	 * @param  string  $version
+	 * @param  string  $operator
 	 *
 	 * @return bool
 	 */
@@ -101,7 +101,7 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param string $plugin
+	 * @param  string  $plugin
 	 *
 	 * @return bool
 	 */
@@ -130,7 +130,7 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param string $tag
+	 * @param  string  $tag
 	 *
 	 * @return false|string
 	 */
@@ -139,6 +139,7 @@ class Helper implements HelperInterface {
 			return false;
 		}
 
+		$matches = null;
 		if ( preg_match( '#v?(\d+)(\.\d+)(\.\d+)?#', $tag, $matches ) ) {
 			return $matches[1] . $matches[2];
 		}
@@ -147,8 +148,8 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param string $package
-	 * @param string $prefix
+	 * @param  string  $package
+	 * @param  string  $prefix
 	 *
 	 * @return string
 	 */
@@ -157,7 +158,7 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param string $url
+	 * @param  string  $url
 	 *
 	 * @return false|string
 	 */
@@ -171,7 +172,7 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param string $key
+	 * @param  string  $key
 	 *
 	 * @return string
 	 */
@@ -180,9 +181,9 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param string $key
-	 * @param string $cache_key
-	 * @param Closure $get_value
+	 * @param  string  $key
+	 * @param  string  $cache_key
+	 * @param  Closure  $get_value
 	 *
 	 * @return mixed
 	 */
@@ -201,9 +202,9 @@ class Helper implements HelperInterface {
 	}
 
 	/**
-	 * @param mixed $default
-	 * @param Closure $check
-	 * @param Closure ...$methods
+	 * @param  mixed  $default
+	 * @param  Closure  $check
+	 * @param  Closure  ...$methods
 	 *
 	 * @return mixed
 	 */

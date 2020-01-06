@@ -30,7 +30,7 @@ trait Testable {
 	}
 
 	/**
-	 * @param array $args
+	 * @param  array  $args
 	 */
 	private function setup_args( array $args ) {
 		foreach ( $this->target_args() as $param ) {
@@ -42,7 +42,7 @@ trait Testable {
 	}
 
 	/**
-	 * @param array $args
+	 * @param  array  $args
 	 */
 	public function reset_args( array $args ) {
 		$this->setup_args( $args );
@@ -67,7 +67,7 @@ trait Testable {
 	}
 
 	/**
-	 * @param string $key
+	 * @param  string  $key
 	 */
 	private function delete_transient( $key ) {
 		delete_transient( 'Technote/GutenbergPackages/' . $key );

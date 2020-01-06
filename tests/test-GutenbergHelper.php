@@ -81,9 +81,12 @@ class GutenbergHelper extends WP_UnitTestCase {
 
 	public function test_get_gutenberg_packages() {
 		$this->assertEquals( [], $this->get_instance()->get_gutenberg_packages() );
-		$this->assertEquals( [], $this->get_instance( [
-			'plugins' => [ 'gutenberg/gutenberg.php' ],
-		] )->get_gutenberg_packages( '0.0.0' ) );
+		$this->assertEquals(
+			[],
+			$this->get_instance( [
+				'plugins' => [ 'gutenberg/gutenberg.php' ],
+			] )->get_gutenberg_packages( '0.0.0' )
+		);
 	}
 
 	public function test_get_gutenberg_package_version() {

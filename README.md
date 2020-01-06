@@ -1,8 +1,8 @@
 # Gutenberg Packages
 
-[![Build Status](https://github.com/technote-space/gutenberg-packages/workflows/Build/badge.svg)](https://github.com/technote-space/gutenberg-packages/actions)
+[![CI Status](https://github.com/technote-space/gutenberg-packages/workflows/CI/badge.svg)](https://github.com/technote-space/gutenberg-packages/actions)
 [![Build Status](https://travis-ci.com/technote-space/gutenberg-packages.svg?branch=master)](https://travis-ci.com/technote-space/gutenberg-packages)
-[![Coverage Status](https://coveralls.io/repos/github/technote-space/gutenberg-packages/badge.svg?branch=master)](https://coveralls.io/github/technote-space/gutenberg-packages?branch=master)
+[![codecov](https://codecov.io/gh/technote-space/gutenberg-packages/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/gutenberg-packages)
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/gutenberg-packages/badge)](https://www.codefactor.io/repository/github/technote-space/gutenberg-packages)
 [![License: GPL v2+](https://img.shields.io/badge/License-GPL%20v2%2B-blue.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![PHP: >=5.6](https://img.shields.io/badge/PHP-%3E%3D5.6-orange.svg)](http://php.net/)

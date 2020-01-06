@@ -32,7 +32,7 @@ class GutenbergPackages {
 	/**
 	 * GutenbergPackages constructor.
 	 *
-	 * @param GutenbergHelperInterface|null $helper
+	 * @param  GutenbergHelperInterface|null  $helper
 	 */
 	public function __construct( GutenbergHelperInterface $helper = null ) {
 		$this->helper = isset( $helper ) ? $helper : new GutenbergHelper();
@@ -71,7 +71,7 @@ class GutenbergPackages {
 	}
 
 	/**
-	 * @param string $key
+	 * @param  string  $key
 	 *
 	 * @return bool
 	 */
@@ -80,8 +80,8 @@ class GutenbergPackages {
 	}
 
 	/**
-	 * @param string $key
-	 * @param Closure $get_value
+	 * @param  string  $key
+	 * @param  Closure  $get_value
 	 *
 	 * @return mixed
 	 */
@@ -101,19 +101,21 @@ class GutenbergPackages {
 			return [];
 		}
 
-		return $this->cache_get( 'editor_package_versions', function () {
-			return $this->get_helper()->get_data( false,
-				function ( $data ) {
-					return false !== $data;
-				},
-				function () {
-					return $this->get_gutenberg_package_versions();
-				},
-				function () {
-					return $this->get_wp_core_package_versions();
-				}
-			);
-		} );
+		return $this->cache_get( 'editor_package_versions',
+			function () {
+				return $this->get_helper()->get_data( false,
+					function ( $data ) {
+						return false !== $data;
+					},
+					function () {
+						return $this->get_gutenberg_package_versions();
+					},
+					function () {
+						return $this->get_wp_core_package_versions();
+					}
+				);
+			}
+		);
 	}
 
 	/**
@@ -122,22 +124,24 @@ class GutenbergPackages {
 	public function get_wp_core_package_versions() {
 		$tag = $this->get_gutenberg_helper()->get_provider()->normalize_tag( $this->get_helper()->get_wp_version() );
 
-		return $this->cache_get( 'wp_core_package_versions', function () use ( $tag ) {
-			return $this->get_helper()->get_data( [],
-				function ( $data ) {
-					return is_array( $data );
-				},
-				function () use ( $tag ) {
-					return $this->get_wp_core_package_versions_from_library( $tag );
-				},
-				function () use ( $tag ) {
-					return $this->get_wp_core_package_versions_from_api( $tag );
-				},
-				function () {
-					return $this->get_wp_core_package_versions_from_repository();
-				}
-			);
-		} );
+		return $this->cache_get( 'wp_core_package_versions',
+			function () use ( $tag ) {
+				return $this->get_helper()->get_data( [],
+					function ( $data ) {
+						return is_array( $data );
+					},
+					function () use ( $tag ) {
+						return $this->get_wp_core_package_versions_from_library( $tag );
+					},
+					function () use ( $tag ) {
+						return $this->get_wp_core_package_versions_from_api( $tag );
+					},
+					function () {
+						return $this->get_wp_core_package_versions_from_repository();
+					}
+				);
+			}
+		);
 	}
 
 	/**
@@ -177,20 +181,22 @@ class GutenbergPackages {
 	 */
 	public function get_gutenberg_package_versions() {
 		if ( $this->get_gutenberg_helper()->is_gutenberg_active() ) {
-			return $this->cache_get( 'gutenberg_package_versions', function () {
-				return $this->get_helper()->get_collection( $this->get_gutenberg_helper()->get_gutenberg_packages() )->map( function ( $package ) {
-					return $this->map_package_info( $package );
-				} )->filter( function ( $data ) {
-					return false !== $data;
-				} )->combine( 'package', 'version' );
-			} );
+			return $this->cache_get( 'gutenberg_package_versions',
+				function () {
+					return $this->get_helper()->get_collection( $this->get_gutenberg_helper()->get_gutenberg_packages() )->map( function ( $package ) {
+						return $this->map_package_info( $package );
+					} )->filter( function ( $data ) {
+						return false !== $data;
+					} )->combine( 'package', 'version' );
+				}
+			);
 		}
 
 		return false;
 	}
 
 	/**
-	 * @param string $package
+	 * @param  string  $package
 	 *
 	 * @return array|false
 	 */
@@ -207,7 +213,7 @@ class GutenbergPackages {
 	}
 
 	/**
-	 * @param string $package
+	 * @param  string  $package
 	 *
 	 * @return bool
 	 */
@@ -216,7 +222,7 @@ class GutenbergPackages {
 	}
 
 	/**
-	 * @param string $package
+	 * @param  string  $package
 	 *
 	 * @return string|false
 	 */
@@ -225,8 +231,8 @@ class GutenbergPackages {
 	}
 
 	/**
-	 * @param array $packages
-	 * @param array $merge
+	 * @param  array  $packages
+	 * @param  array  $merge
 	 *
 	 * @return array
 	 */
@@ -239,7 +245,7 @@ class GutenbergPackages {
 	}
 
 	/**
-	 * @param array $packages
+	 * @param  array  $packages
 	 *
 	 * @return array
 	 */

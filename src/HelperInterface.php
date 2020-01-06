@@ -25,27 +25,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 interface HelperInterface {
 
 	/**
-	 * @param array|Traversable $items
+	 * @param  array|Traversable  $items
 	 *
 	 * @return Collection
 	 */
 	public function get_collection( $items );
 
 	/**
-	 * @param int $cache_expiration
+	 * @param  int  $cache_expiration
 	 */
 	public function set_cache_expiration( $cache_expiration );
 
 	/**
-	 * @param string $dir
+	 * @param  string  $dir
 	 *
 	 * @return Generator
 	 */
 	public function dirlist( $dir );
 
 	/**
-	 * @param string $haystack
-	 * @param string $needle
+	 * @param  string  $haystack
+	 * @param  string  $needle
 	 *
 	 * @return bool
 	 */
@@ -57,15 +57,15 @@ interface HelperInterface {
 	public function get_wp_version();
 
 	/**
-	 * @param string $version
-	 * @param string $operator
+	 * @param  string  $version
+	 * @param  string  $operator
 	 *
 	 * @return bool
 	 */
 	public function compare_wp_version( $version, $operator );
 
 	/**
-	 * @param string $plugin
+	 * @param  string  $plugin
 	 *
 	 * @return bool
 	 */
@@ -77,40 +77,40 @@ interface HelperInterface {
 	public function get_active_plugins();
 
 	/**
-	 * @param string $version
+	 * @param  string  $version
 	 *
 	 * @return false|string
 	 */
 	public function get_release_tag( $version );
 
 	/**
-	 * @param string $package
-	 * @param string $prefix
+	 * @param  string  $package
+	 * @param  string  $prefix
 	 *
 	 * @return string
 	 */
 	public function normalize_package( $package, $prefix = 'wp-' );
 
 	/**
-	 * @param string $url
+	 * @param  string  $url
 	 *
 	 * @return false|string
 	 */
 	public function get_remote( $url );
 
 	/**
-	 * @param string $key
-	 * @param string $cache_key
-	 * @param Closure $get_value
+	 * @param  string  $key
+	 * @param  string  $cache_key
+	 * @param  Closure  $get_value
 	 *
 	 * @return mixed
 	 */
 	public function get_cache( $key, $cache_key, $get_value );
 
 	/**
-	 * @param mixed $default
-	 * @param Closure $check
-	 * @param Closure ...$methods
+	 * @param  mixed  $default
+	 * @param  Closure  $check
+	 * @param  Closure  ...$methods
 	 *
 	 * @return mixed
 	 */
