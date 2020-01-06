@@ -37,20 +37,22 @@ class Collection extends WP_UnitTestCase {
 	}
 
 	public function test_pluck() {
-		$this->assertEquals( [ 1, 2, 3 ], $this->get_collection( [
-			[
-				'a' => 1,
-				'b' => 10,
-			],
-			[
-				'a' => 2,
-				'b' => 20,
-			],
-			[
-				'a' => 3,
-				'b' => 30,
-			],
-		] )->pluck( 'a' ) );
+		$this->assertEquals( [ 1, 2, 3 ],
+			$this->get_collection( [
+				[
+					'a' => 1,
+					'b' => 10,
+				],
+				[
+					'a' => 2,
+					'b' => 20,
+				],
+				[
+					'a' => 3,
+					'b' => 30,
+				],
+			] )->pluck( 'a' )
+		);
 	}
 
 	public function test_combine() {
@@ -78,37 +80,45 @@ class Collection extends WP_UnitTestCase {
 	}
 
 	public function test_get() {
-		$this->assertEquals( 1, $this->get_collection(
-			[
-				'a' => 1,
-				'b' => 2,
-				'c' => 3,
-			]
-		)->get( 'a' ) );
-		$this->assertEquals( 3, $this->get_collection(
-			[
-				'a' => 1,
-				'b' => 2,
-				'c' => 3,
-			]
-		)->get( 'c' ) );
+		$this->assertEquals( 1,
+			$this->get_collection(
+				[
+					'a' => 1,
+					'b' => 2,
+					'c' => 3,
+				]
+			)->get( 'a' )
+		);
+		$this->assertEquals( 3,
+			$this->get_collection(
+				[
+					'a' => 1,
+					'b' => 2,
+					'c' => 3,
+				]
+			)->get( 'c' )
+		);
 	}
 
 	public function test_exists() {
-		$this->assertEquals( true, $this->get_collection(
-			[
-				'a' => 1,
-				'b' => 2,
-				'c' => 3,
-			]
-		)->exists( 'a' ) );
-		$this->assertEquals( false, $this->get_collection(
-			[
-				'a' => 1,
-				'b' => 2,
-				'c' => 3,
-			]
-		)->exists( 'd' ) );
+		$this->assertEquals( true,
+			$this->get_collection(
+				[
+					'a' => 1,
+					'b' => 2,
+					'c' => 3,
+				]
+			)->exists( 'a' )
+		);
+		$this->assertEquals( false,
+			$this->get_collection(
+				[
+					'a' => 1,
+					'b' => 2,
+					'c' => 3,
+				]
+			)->exists( 'd' )
+		);
 	}
 
 	public function test_filter() {

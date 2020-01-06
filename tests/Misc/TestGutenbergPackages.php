@@ -31,9 +31,9 @@ class TestGutenbergPackages extends GutenbergPackages {
 	/**
 	 * TestGutenbergPackages constructor.
 	 *
-	 * @param array $args
-	 * @param GutenbergHelperInterface|null $helper
-	 * @param null|bool $is_admin
+	 * @param  array  $args
+	 * @param  GutenbergHelperInterface|null  $helper
+	 * @param  null|bool  $is_admin
 	 *
 	 * @throws ReflectionException
 	 */
@@ -86,7 +86,7 @@ class TestGutenbergPackages extends GutenbergPackages {
 	}
 
 	/**
-	 * @param string $key
+	 * @param  string  $key
 	 *
 	 * @return bool
 	 */

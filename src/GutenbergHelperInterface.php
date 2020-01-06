@@ -28,7 +28,7 @@ interface GutenbergHelperInterface {
 	public function get_helper();
 
 	/**
-	 * @param string|null $target
+	 * @param  string|null  $target
 	 *
 	 * @return GutenbergPackageVersionProvider
 	 */
@@ -60,16 +60,16 @@ interface GutenbergHelperInterface {
 	public function get_gutenberg_tag();
 
 	/**
-	 * @param string $version
-	 * @param mixed ...$append
+	 * @param  string  $version
+	 * @param  mixed  ...$append
 	 *
 	 * @return string
 	 */
 	public function get_repository_url( $version, ...$append );
 
 	/**
-	 * @param string $target
-	 * @param mixed ...$append
+	 * @param  string  $target
+	 * @param  mixed  ...$append
 	 *
 	 * @return string
 	 */
@@ -81,8 +81,8 @@ interface GutenbergHelperInterface {
 	public function get_gutenberg_packages();
 
 	/**
-	 * @param string $package
-	 * @param string|null $tag
+	 * @param  string  $package
+	 * @param  string|null  $tag
 	 *
 	 * @return false|string
 	 */
@@ -94,8 +94,8 @@ interface GutenbergHelperInterface {
 	public function get_cache_key();
 
 	/**
-	 * @param string $key
-	 * @param Closure $get_value
+	 * @param  string  $key
+	 * @param  Closure  $get_value
 	 *
 	 * @return mixed
 	 */

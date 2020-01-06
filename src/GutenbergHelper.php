@@ -34,7 +34,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	/**
 	 * GutenbergHelper constructor.
 	 *
-	 * @param HelperInterface|null $helper
+	 * @param  HelperInterface|null  $helper
 	 */
 	public function __construct( HelperInterface $helper = null ) {
 		$this->helper = isset( $helper ) ? $helper : new Helper();
@@ -48,7 +48,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string|null $target
+	 * @param  string|null  $target
 	 *
 	 * @return GutenbergPackageVersionProvider
 	 */
@@ -62,7 +62,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $target
+	 * @param  string  $target
 	 *
 	 * @return string
 	 */
@@ -112,8 +112,8 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $tag
-	 * @param mixed ...$append
+	 * @param  string  $tag
+	 * @param  mixed  ...$append
 	 *
 	 * @return string
 	 */
@@ -122,8 +122,8 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $target
-	 * @param mixed ...$append
+	 * @param  string  $target
+	 * @param  mixed  ...$append
 	 *
 	 * @return string
 	 */
@@ -132,7 +132,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string|null $tag
+	 * @param  string|null  $tag
 	 *
 	 * @return array
 	 */
@@ -161,7 +161,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $tag
+	 * @param  string  $tag
 	 *
 	 * @return array|null
 	 */
@@ -175,7 +175,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $tag
+	 * @param  string  $tag
 	 *
 	 * @return array|null
 	 */
@@ -189,7 +189,7 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $tag
+	 * @param  string  $tag
 	 *
 	 * @return array
 	 */
@@ -205,8 +205,8 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $package
-	 * @param string|null $tag
+	 * @param  string  $package
+	 * @param  string|null  $tag
 	 *
 	 * @return false|string
 	 */
@@ -235,8 +235,8 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $tag
-	 * @param string $package
+	 * @param  string  $tag
+	 * @param  string  $package
 	 *
 	 * @return false|string
 	 */
@@ -245,8 +245,8 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $tag
-	 * @param string $package
+	 * @param  string  $tag
+	 * @param  string  $package
 	 *
 	 * @return false|string
 	 */
@@ -264,8 +264,8 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $tag
-	 * @param string $package
+	 * @param  string  $tag
+	 * @param  string  $package
 	 *
 	 * @return false|string
 	 */
@@ -300,8 +300,8 @@ class GutenbergHelper implements GutenbergHelperInterface {
 	}
 
 	/**
-	 * @param string $key
-	 * @param Closure $get_value
+	 * @param  string  $key
+	 * @param  Closure  $get_value
 	 *
 	 * @return mixed
 	 */

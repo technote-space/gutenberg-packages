@@ -29,7 +29,7 @@ class TestHelper extends Helper {
 	/**
 	 * TestHelper constructor.
 	 *
-	 * @param array $args
+	 * @param  array  $args
 	 */
 	public function __construct( array $args = [] ) {
 		$this->setup_args( $args );
@@ -61,7 +61,7 @@ class TestHelper extends Helper {
 	}
 
 	/**
-	 * @param string $url
+	 * @param  string  $url
 	 *
 	 * @return false|string
 	 */
