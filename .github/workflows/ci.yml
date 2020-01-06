@@ -67,7 +67,7 @@ jobs:
           - php: '7.3'
             WP_VERSION: 'latest'
             WP_MULTISITE: '1'
-            ACTIVATE_POPULAR_PLUGINS: 1
+            SEND_CODECOV: 1
           - php: '5.6'
             WP_VERSION: 'trunk'
             WP_MULTISITE: '1'
@@ -84,20 +84,20 @@ jobs:
         env:
           WP_VERSION: ${{ matrix.WP_VERSION }}
           WP_MULTISITE: ${{ matrix.WP_MULTISITE }}
-          ACTIVATE_POPULAR_PLUGINS: ${{ matrix.ACTIVATE_POPULAR_PLUGINS }}
+          ACTIVATE_POPULAR_PLUGINS: 1
       - name: Run tests
         run: bash travis-ci/bin/php/wp-test.sh
         env:
           DB_PASS: root
           WP_VERSION: ${{ matrix.WP_VERSION }}
           WP_MULTISITE: ${{ matrix.WP_MULTISITE }}
-          ACTIVATE_POPULAR_PLUGINS: ${{ matrix.ACTIVATE_POPULAR_PLUGINS }}
+          ACTIVATE_POPULAR_PLUGINS: 1
       - name: Codecov
         run: curl -s https://codecov.io/bash | bash -s -- -t $CODECOV_TOKEN -f $COVERAGE_FILE
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           COVERAGE_FILE: ./coverage/clover.xml
-        if: matrix.ACTIVATE_POPULAR_PLUGINS == 1
+        if: matrix.SEND_CODECOV == 1
       - uses: 8398a7/action-slack@v1
         with:
           type: failure
