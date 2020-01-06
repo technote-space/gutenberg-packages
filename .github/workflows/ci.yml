@@ -85,6 +85,7 @@ jobs:
           WP_VERSION: ${{ matrix.WP_VERSION }}
           WP_MULTISITE: ${{ matrix.WP_MULTISITE }}
           ACTIVATE_POPULAR_PLUGINS: 1
+          IGNORE_GUTENBERG_VERSION: 1
       - name: Run tests
         run: bash travis-ci/bin/php/wp-test.sh
         env:
@@ -92,6 +93,7 @@ jobs:
           WP_VERSION: ${{ matrix.WP_VERSION }}
           WP_MULTISITE: ${{ matrix.WP_MULTISITE }}
           ACTIVATE_POPULAR_PLUGINS: 1
+          IGNORE_GUTENBERG_VERSION: 1
       - name: Codecov
         run: curl -s https://codecov.io/bash | bash -s -- -t $CODECOV_TOKEN -f $COVERAGE_FILE
         env:
