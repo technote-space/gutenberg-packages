@@ -1,6 +1,6 @@
 # Gutenberg Packages
 
-[![Build Status](https://github.com/technote-space/gutenberg-packages/workflows/Build/badge.svg)](https://github.com/technote-space/gutenberg-packages/actions)
+[![CI Status](https://github.com/technote-space/gutenberg-packages/workflows/CI/badge.svg)](https://github.com/technote-space/gutenberg-packages/actions)
 [![Build Status](https://travis-ci.com/technote-space/gutenberg-packages.svg?branch=master)](https://travis-ci.com/technote-space/gutenberg-packages)
 [![codecov](https://codecov.io/gh/technote-space/gutenberg-packages/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/gutenberg-packages)
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/gutenberg-packages/badge)](https://www.codefactor.io/repository/github/technote-space/gutenberg-packages)

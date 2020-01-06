@@ -63,7 +63,6 @@ jobs:
         - WP_VERSION=latest
         - COVERAGE_REPORT=1
         - ACTIVATE_POPULAR_PLUGINS=1
-        - IGNORE_GUTENBERG_VERSION=1
       script: bash travis-ci/bin/php/wp-test.sh
     - stage: test
       language: php
@@ -73,7 +72,6 @@ jobs:
         - WP_MULTISITE=1
         - COVERAGE_REPORT=1
         - ACTIVATE_POPULAR_PLUGINS=1
-        - IGNORE_GUTENBERG_VERSION=1
       script: bash travis-ci/bin/php/wp-test.sh
     - stage: test
       language: php
@@ -83,7 +81,6 @@ jobs:
         - WP_MULTISITE=1
         - COVERAGE_REPORT=1
         - ACTIVATE_POPULAR_PLUGINS=1
-        - IGNORE_GUTENBERG_VERSION=1
       script: bash travis-ci/bin/php/wp-test.sh
 
 
