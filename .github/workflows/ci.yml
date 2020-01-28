@@ -11,6 +11,8 @@ name: CI
 env:
   CI: 1
   TRAVIS_BUILD_DIR: ${{ github.workspace }}
+  ACTIVATE_POPULAR_PLUGINS: 1
+  IGNORE_GUTENBERG_VERSION: 1
 
 jobs:
   phpcs:
@@ -63,14 +65,12 @@ jobs:
       matrix:
         php: ['7.0', '7.3', '5.6']
         WP_VERSION: ['latest', '5.0', 'trunk']
+        WP_MULTISITE: ['0', '1']
         include:
           - php: '7.3'
             WP_VERSION: 'latest'
             WP_MULTISITE: '1'
             SEND_CODECOV: 1
-          - php: '5.6'
-            WP_VERSION: 'trunk'
-            WP_MULTISITE: '1'
     steps:
       - uses: actions/checkout@v2
         with:
@@ -84,18 +84,17 @@ jobs:
         env:
           WP_VERSION: ${{ matrix.WP_VERSION }}
           WP_MULTISITE: ${{ matrix.WP_MULTISITE }}
-          ACTIVATE_POPULAR_PLUGINS: 1
-          IGNORE_GUTENBERG_VERSION: 1
       - name: Run tests
         run: bash travis-ci/bin/php/wp-test.sh
         env:
           DB_PASS: root
           WP_VERSION: ${{ matrix.WP_VERSION }}
           WP_MULTISITE: ${{ matrix.WP_MULTISITE }}
-          ACTIVATE_POPULAR_PLUGINS: 1
-          IGNORE_GUTENBERG_VERSION: 1
       - name: Codecov
-        run: curl -s https://codecov.io/bash | bash -s -- -t $CODECOV_TOKEN -f $COVERAGE_FILE
+        run: |
+          if [ -n "$CODECOV_TOKEN" ]; then
+            curl -s https://codecov.io/bash | bash -s -- -t $CODECOV_TOKEN -f $COVERAGE_FILE
+          fi
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           COVERAGE_FILE: ./coverage/clover.xml
