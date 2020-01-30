@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: 0 15 * * 4
+    - cron: 0 15 * * 5
   repository_dispatch:
     types: [sync-workflows]
 
@@ -27,6 +27,7 @@ jobs:
             sed -i '/SEND_CODECOV: \$/d' .github/workflows/ci.yml
             sed -i '14i \ \ IGNORE_GUTENBERG_VERSION: 1' .github/workflows/ci.yml
             sed -i '14i \ \ ACTIVATE_POPULAR_PLUGINS: 1' .github/workflows/ci.yml
+            sed -i 's/cron:.\+$/cron: 0 1 * * 0,4/' .github/workflows/update-dependencies.yml
 
             rm -rdf .github/workflows/.tmp
           COMMIT_MESSAGE: 'chore: sync workflows'
