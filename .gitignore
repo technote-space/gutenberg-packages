@@ -1,7 +1,5 @@
 Thumbs.db
 /.idea
-id_rsa
-id_rsa.pub
 
 !tests/bin/*.sh
 /coverage
@@ -14,4 +12,3 @@ id_rsa.pub
 /phpunit.xml
 /tests/bootstrap.php
 /.plugin
-composer.lock
