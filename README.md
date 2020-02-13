@@ -20,9 +20,12 @@ This repository (`Gutenberg Packages`) manages versions of Gutenberg.
 and cache for a day.  
 (When the state (WP Core version or Gutenberg plugin state) changes, the cache is cleared).
 
+## Table of Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+<details>
+<summary>Details</summary>
 
 - [Requirement](#requirement)
 - [Installation](#installation)
@@ -31,6 +34,7 @@ and cache for a day.
 - [Dependency](#dependency)
 - [Author](#author)
 
+</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Requirement
