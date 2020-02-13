@@ -20,13 +20,12 @@ jobs:
             mkdir -p .github/workflows/.tmp
             git clone --depth=1 https://github.com/technote-space/github-actions-workflows.git .github/workflows/.tmp/workflows
 
-            bash .github/workflows/.tmp/workflows/wp-plugin/copy.sh releases php-test
+            bash .github/workflows/.tmp/workflows/wp-plugin/copy.sh
 
             sed -i "s/WP_VERSION: \[.\+$/WP_VERSION: ['latest', '5.0', 'trunk']/" .github/workflows/ci.yml
             sed -i "s/ACTIVATE_POPULAR_PLUGINS/SEND_CODECOV/g" .github/workflows/ci.yml
             sed -i '/SEND_CODECOV: \$/d' .github/workflows/ci.yml
-            sed -i '14i \ \ IGNORE_GUTENBERG_VERSION: 1' .github/workflows/ci.yml
-            sed -i '14i \ \ ACTIVATE_POPULAR_PLUGINS: 1' .github/workflows/ci.yml
+            sed -i '/CI: 1/a \  ACTIVATE_POPULAR_PLUGINS: 1\n  IGNORE_GUTENBERG_VERSION: 1' .github/workflows/ci.yml
             sed -i 's/cron:.\+$/cron: 0 1 * * 0,4/' .github/workflows/update-dependencies.yml
 
             rm -rdf .github/workflows/.tmp
