@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6dfe91383f84be19c6307c123cf5226a",
+    "content-hash": "c5b920b0380d725cc6567e1736b3e726",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.2.25",
+            "version": "v0.2.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "960a42f4bca8b620ed57cd96f4aff844c4a015ba"
+                "reference": "5184fb3145e7b1a69785ee08286421a293867b46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/960a42f4bca8b620ed57cd96f4aff844c4a015ba",
-                "reference": "960a42f4bca8b620ed57cd96f4aff844c4a015ba",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/5184fb3145e7b1a69785ee08286421a293867b46",
+                "reference": "5184fb3145e7b1a69785ee08286421a293867b46",
                 "shasum": ""
             },
             "require": {
@@ -55,7 +55,7 @@
                 "gutenberg",
                 "wordpress"
             ],
-            "time": "2020-02-12T17:22:57+00:00"
+            "time": "2020-02-25T17:30:56+00:00"
         }
     ],
     "packages-dev": [
@@ -623,22 +623,22 @@
         },
         {
             "name": "phpmd/phpmd",
-            "version": "2.8.1",
+            "version": "2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmd/phpmd.git",
-                "reference": "5664b95d484797582f5af9536238deb9ecde58a1"
+                "reference": "714629ed782537f638fe23c4346637659b779a77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/5664b95d484797582f5af9536238deb9ecde58a1",
-                "reference": "5664b95d484797582f5af9536238deb9ecde58a1",
+                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/714629ed782537f638fe23c4346637659b779a77",
+                "reference": "714629ed782537f638fe23c4346637659b779a77",
                 "shasum": ""
             },
             "require": {
                 "composer/xdebug-handler": "^1.0",
                 "ext-xml": "*",
-                "pdepend/pdepend": "^2.6",
+                "pdepend/pdepend": "^2.7.1",
                 "php": ">=5.3.9"
             },
             "require-dev": {
@@ -689,7 +689,7 @@
                 "phpmd",
                 "pmd"
             ],
-            "time": "2019-12-27T11:09:06+00:00"
+            "time": "2020-02-16T20:15:50+00:00"
         },
         {
             "name": "phpspec/prophecy",
