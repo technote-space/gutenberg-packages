@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b5c9626edde5ed8e2ecb1c0971b5699",
+    "content-hash": "26f46b1b367a55c18ef32e94f0010d4c",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.2.27",
+            "version": "v0.2.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "b1f2499de457d4e26ed776051a691592ad324a16"
+                "reference": "d6332bd736c0603f8caa239bc963420e6ab8003d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/b1f2499de457d4e26ed776051a691592ad324a16",
-                "reference": "b1f2499de457d4e26ed776051a691592ad324a16",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/d6332bd736c0603f8caa239bc963420e6ab8003d",
+                "reference": "d6332bd736c0603f8caa239bc963420e6ab8003d",
                 "shasum": ""
             },
             "require": {
@@ -55,7 +55,7 @@
                 "gutenberg",
                 "wordpress"
             ],
-            "time": "2020-02-27T17:32:18+00:00"
+            "time": "2020-03-11T17:39:18+00:00"
         }
     ],
     "packages-dev": [
