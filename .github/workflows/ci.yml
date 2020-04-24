@@ -3,9 +3,6 @@ on: push
 name: CI
 
 env:
-  CI: 1
-  ACTIVATE_POPULAR_PLUGINS: 1
-  IGNORE_GUTENBERG_VERSION: 1
   TRAVIS_BUILD_DIR: ${{ github.workspace }}
 
 jobs:
@@ -143,7 +140,7 @@ jobs:
     name: Coverage
     needs: eslint
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     strategy:
       matrix:
         node: ['11', '12']
@@ -215,7 +212,7 @@ jobs:
     name: PHPUnit
     needs: [phpcs, phpmd]
     runs-on: ubuntu-16.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     services:
       mysql:
         image: mysql
