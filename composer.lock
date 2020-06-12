@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "342006448e904fb1db24dc421065f568",
+    "content-hash": "2d3d2f75035d4ef4f57d62e68ce92638",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.2.52",
+            "version": "v0.2.53",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "38e5bcb599970a66948e11e278de8b8710271fce"
+                "reference": "f750250cca18f2de23dae5c08801b72dda9feb96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/38e5bcb599970a66948e11e278de8b8710271fce",
-                "reference": "38e5bcb599970a66948e11e278de8b8710271fce",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/f750250cca18f2de23dae5c08801b72dda9feb96",
+                "reference": "f750250cca18f2de23dae5c08801b72dda9feb96",
                 "shasum": ""
             },
             "require": {
@@ -61,22 +61,22 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-05-29T16:03:38+00:00"
+            "time": "2020-06-08T16:09:32+00:00"
         }
     ],
     "packages-dev": [
         {
             "name": "composer/xdebug-handler",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "1ab9842d69e64fb3a01be6b656501032d1b78cb7"
+                "reference": "fa2aaf99e2087f013a14f7432c1cd2dd7d8f1f51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/1ab9842d69e64fb3a01be6b656501032d1b78cb7",
-                "reference": "1ab9842d69e64fb3a01be6b656501032d1b78cb7",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/fa2aaf99e2087f013a14f7432c1cd2dd7d8f1f51",
+                "reference": "fa2aaf99e2087f013a14f7432c1cd2dd7d8f1f51",
                 "shasum": ""
             },
             "require": {
@@ -111,9 +111,17 @@
                 {
                     "url": "https://packagist.com",
                     "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
                 }
             ],
-            "time": "2020-03-01T12:26:26+00:00"
+            "time": "2020-06-04T11:16:35+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -1259,12 +1267,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "de6fda3af9b36c77fdeb62b968157032f7111b09"
+                "reference": "59f3050bcd5dab238c9ac3eada55269cc2fcfaa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/de6fda3af9b36c77fdeb62b968157032f7111b09",
-                "reference": "de6fda3af9b36c77fdeb62b968157032f7111b09",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/59f3050bcd5dab238c9ac3eada55269cc2fcfaa8",
+                "reference": "59f3050bcd5dab238c9ac3eada55269cc2fcfaa8",
                 "shasum": ""
             },
             "conflict": {
@@ -1279,7 +1287,7 @@
                 "bagisto/bagisto": "<0.1.5",
                 "barrelstrength/sprout-base-email": "<1.2.7",
                 "barrelstrength/sprout-forms": "<3.9",
-                "bolt/bolt": "<3.6.10",
+                "bolt/bolt": "<3.7.1",
                 "brightlocal/phpwhois": "<=4.2.5",
                 "buddypress/buddypress": "<5.1.2",
                 "bugsnag/bugsnag-laravel": ">=2,<2.0.2",
@@ -1371,6 +1379,7 @@
                 "pear/archive_tar": "<1.4.4",
                 "phpfastcache/phpfastcache": ">=5,<5.0.13",
                 "phpmailer/phpmailer": "<6.1.6",
+                "phpmussel/phpmussel": ">=1,<1.6",
                 "phpmyadmin/phpmyadmin": "<4.9.2",
                 "phpoffice/phpexcel": "<1.8.2",
                 "phpoffice/phpspreadsheet": "<1.8",
@@ -1534,7 +1543,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-04T00:00:55+00:00"
+            "time": "2020-06-11T00:01:52+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
