@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d3d2f75035d4ef4f57d62e68ce92638",
+    "content-hash": "be5f188730e4fdd66a26d8984877a380",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.2.53",
+            "version": "v0.2.54",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "f750250cca18f2de23dae5c08801b72dda9feb96"
+                "reference": "d23c063bcf58a40d47f5e3aaaa8544441da86faf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/f750250cca18f2de23dae5c08801b72dda9feb96",
-                "reference": "f750250cca18f2de23dae5c08801b72dda9feb96",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/d23c063bcf58a40d47f5e3aaaa8544441da86faf",
+                "reference": "d23c063bcf58a40d47f5e3aaaa8544441da86faf",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-06-08T16:09:32+00:00"
+            "time": "2020-06-11T16:11:13+00:00"
         }
     ],
     "packages-dev": [
@@ -2111,7 +2111,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.41",
+            "version": "v3.4.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -2189,7 +2189,7 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.41",
+            "version": "v3.4.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
@@ -2274,7 +2274,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.41",
+            "version": "v3.4.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -2410,7 +2410,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.41",
+            "version": "v3.4.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
