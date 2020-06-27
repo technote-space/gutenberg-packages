@@ -4,6 +4,8 @@ name: CI
 
 env:
   TRAVIS_BUILD_DIR: ${{ github.workspace }}
+  ACTIVATE_POPULAR_PLUGINS: 1
+  IGNORE_GUTENBERG_VERSION: 1
 
 jobs:
   eslint:
