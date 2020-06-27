@@ -26,7 +26,7 @@ jobs:
             sed -i "s/WP_VERSION: \[.\+$/WP_VERSION: ['latest', '5.0']/" .github/workflows/ci.yml
             sed -i "s/ACTIVATE_POPULAR_PLUGINS/SEND_CODECOV/g" .github/workflows/ci.yml
             sed -i '/SEND_CODECOV: \$/d' .github/workflows/ci.yml
-            sed -i '/CI: 1/a \  ACTIVATE_POPULAR_PLUGINS: 1\n  IGNORE_GUTENBERG_VERSION: 1' .github/workflows/ci.yml
+            sed -i '/TRAVIS_BUILD_DIR:/a \  ACTIVATE_POPULAR_PLUGINS: 1\n  IGNORE_GUTENBERG_VERSION: 1' .github/workflows/ci.yml
             sed -i 's/cron:.\+$/cron: 0 1 * * 0,4/' .github/workflows/update-dependencies.yml
 
             rm -rdf .github/workflows/.tmp
