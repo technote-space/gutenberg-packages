@@ -22,7 +22,7 @@ jobs:
         run: echo "::set-env name=RUNNING::1"
       - uses: actions/checkout@v2
       - uses: technote-space/get-git-comment-action@v1
-      - uses: technote-space/get-diff-action@v1
+      - uses: technote-space/get-diff-action@v2
         with:
           PREFIX_FILTER: assets/js/
           SUFFIX_FILTER: |
@@ -64,7 +64,7 @@ jobs:
         run: echo "::set-env name=RUNNING::1"
       - uses: actions/checkout@v2
       - uses: technote-space/get-git-comment-action@v1
-      - uses: technote-space/get-diff-action@v1
+      - uses: technote-space/get-diff-action@v2
         with:
           PREFIX_FILTER: |
             configs/
@@ -106,7 +106,7 @@ jobs:
         run: echo "::set-env name=RUNNING::1"
       - uses: actions/checkout@v2
       - uses: technote-space/get-git-comment-action@v1
-      - uses: technote-space/get-diff-action@v1
+      - uses: technote-space/get-diff-action@v2
         with:
           PREFIX_FILTER: |
             configs/
@@ -151,7 +151,7 @@ jobs:
         run: echo "::set-env name=RUNNING::1"
       - uses: actions/checkout@v2
       - uses: technote-space/get-git-comment-action@v1
-      - uses: technote-space/get-diff-action@v1
+      - uses: technote-space/get-diff-action@v2
         with:
           PREFIX_FILTER: assets/js/
           SUFFIX_FILTER: |
@@ -235,7 +235,7 @@ jobs:
         run: echo "::set-env name=RUNNING::1"
       - uses: actions/checkout@v2
       - uses: technote-space/get-git-comment-action@v1
-      - uses: technote-space/get-diff-action@v1
+      - uses: technote-space/get-diff-action@v2
         with:
           PREFIX_FILTER: |
             configs/
