@@ -5,7 +5,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/gutenberg-packages/badge)](https://www.codefactor.io/repository/github/technote-space/gutenberg-packages)
 [![License: GPL v2+](https://img.shields.io/badge/License-GPL%20v2%2B-blue.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![PHP: >=5.6](https://img.shields.io/badge/PHP-%3E%3D5.6-orange.svg)](http://php.net/)
-[![WordPress: >=5.0](https://img.shields.io/badge/WordPress-%3E%3D5.0-brightgreen.svg)](https://wordpress.org/)
+[![WordPress: >=5.3](https://img.shields.io/badge/WordPress-%3E%3D5.3-brightgreen.svg)](https://wordpress.org/)
 
 This repository (`Gutenberg Packages`) manages versions of Gutenberg.  
 
@@ -38,7 +38,7 @@ and cache for a day.
 
 ## Requirement
 - \>= PHP 5.6
-- \>= WordPress v5.0
+- \>= WordPress v5.3
 
 ## Installation
 ```bash
