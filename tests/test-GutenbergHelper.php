@@ -87,6 +87,52 @@ class GutenbergHelper extends WP_UnitTestCase {
 				'plugins' => [ 'gutenberg/gutenberg.php' ],
 			] )->get_gutenberg_packages( '0.0.0' )
 		);
+		$this->assertEquals(
+			[
+				0  => 'wp-a11y',
+				1  => 'wp-annotations',
+				2  => 'wp-api-fetch',
+				3  => 'wp-autop',
+				4  => 'wp-blob',
+				5  => 'wp-block-library',
+				6  => 'wp-block-serialization-default-parser',
+				7  => 'wp-block-serialization-spec-parser',
+				8  => 'wp-blocks',
+				9  => 'wp-components',
+				10 => 'wp-compose',
+				11 => 'wp-core-data',
+				12 => 'wp-data',
+				13 => 'wp-date',
+				14 => 'wp-deprecated',
+				15 => 'wp-dom',
+				16 => 'wp-dom-ready',
+				17 => 'wp-editor',
+				18 => 'wp-edit-post',
+				19 => 'wp-element',
+				20 => 'wp-escape-html',
+				21 => 'wp-format-library',
+				22 => 'wp-hooks',
+				23 => 'wp-html-entities',
+				24 => 'wp-i18n',
+				25 => 'wp-is-shallow-equal',
+				26 => 'wp-keycodes',
+				27 => 'wp-list-reusable-blocks',
+				28 => 'wp-notices',
+				29 => 'wp-nux',
+				30 => 'wp-plugins',
+				31 => 'wp-priority-queue',
+				32 => 'wp-redux-routine',
+				33 => 'wp-rich-text',
+				34 => 'wp-shortcode',
+				35 => 'wp-token-list',
+				36 => 'wp-url',
+				37 => 'wp-viewport',
+				38 => 'wp-wordcount',
+			],
+			$this->get_instance( [
+				'plugins' => [ 'gutenberg/gutenberg.php' ],
+			] )->get_gutenberg_packages( '5.0.0' )
+		);
 	}
 
 	public function test_get_gutenberg_package_version() {

@@ -37,7 +37,7 @@ class GutenbergPackages extends WP_UnitTestCase {
 	 * @throws ReflectionException
 	 */
 	private function get_instance( $args = [], $is_admin = null ) {
-		$args['gutenberg_absolute_path']   = '/tmp/wordpress/wp-content/plugins/gutenberg/gutenberg.php';
+		$args['gutenberg_absolute_path']   = sys_get_temp_dir() . '/wordpress/wp-content/plugins/gutenberg/gutenberg.php';
 		$args['gutenberg_package_version'] = function ( $package, $original ) {
 			if ( 'wp-rich-text' === $package ) {
 				return false;

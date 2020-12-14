@@ -24,7 +24,7 @@ jobs:
             bash .github/workflows/.tmp/workflows/wp-plugin/copy.sh
 
             sed -i "s/php: \[.\+$/php: ['7.3', '5.6']/" .github/workflows/ci.yml
-            sed -i "s/WP_VERSION: \[.\+$/WP_VERSION: ['latest', '5.3']/" .github/workflows/ci.yml
+            sed -i "s/WP_VERSION: \[.\+$/WP_VERSION: ['latest', '5.5']/" .github/workflows/ci.yml
             sed -i "s/ACTIVATE_POPULAR_PLUGINS/SEND_CODECOV/g" .github/workflows/ci.yml
             sed -i '/SEND_CODECOV: \$/d' .github/workflows/ci.yml
             sed -i '/TRAVIS_BUILD_DIR:/a \  ACTIVATE_POPULAR_PLUGINS: 1\n  IGNORE_GUTENBERG_VERSION: 1' .github/workflows/ci.yml
