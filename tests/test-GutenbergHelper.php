@@ -89,16 +89,16 @@ class GutenbergHelper extends WP_UnitTestCase {
 		);
 		$this->assertEquals(
 			[
-				0 => 'wp-a11y',
-				1 => 'wp-annotations',
-				2 => 'wp-api-fetch',
-				3 => 'wp-autop',
-				4 => 'wp-blob',
-				5 => 'wp-block-library',
-				6 => 'wp-block-serialization-default-parser',
-				7 => 'wp-block-serialization-spec-parser',
-				8 => 'wp-blocks',
-				9 => 'wp-components',
+				0  => 'wp-a11y',
+				1  => 'wp-annotations',
+				2  => 'wp-api-fetch',
+				3  => 'wp-autop',
+				4  => 'wp-blob',
+				5  => 'wp-block-library',
+				6  => 'wp-block-serialization-default-parser',
+				7  => 'wp-block-serialization-spec-parser',
+				8  => 'wp-blocks',
+				9  => 'wp-components',
 				10 => 'wp-compose',
 				11 => 'wp-core-data',
 				12 => 'wp-data',
@@ -127,7 +127,7 @@ class GutenbergHelper extends WP_UnitTestCase {
 				35 => 'wp-token-list',
 				36 => 'wp-url',
 				37 => 'wp-viewport',
-				38 => 'wp-wordcount'
+				38 => 'wp-wordcount',
 			],
 			$this->get_instance( [
 				'plugins' => [ 'gutenberg/gutenberg.php' ],
