@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ed91cb3518490cb29505fd8c19ea93c",
+    "content-hash": "43df92fe877d598580034503366773bd",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.3.15",
+            "version": "v0.3.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "6843135e723d09e30fde9f2baf15e555b7fa209d"
+                "reference": "acc4545668f6a88370c0499b99f202892cd648c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/6843135e723d09e30fde9f2baf15e555b7fa209d",
-                "reference": "6843135e723d09e30fde9f2baf15e555b7fa209d",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/acc4545668f6a88370c0499b99f202892cd648c7",
+                "reference": "acc4545668f6a88370c0499b99f202892cd648c7",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-01-06T20:54:16+00:00"
+            "time": "2021-01-13T21:11:49+00:00"
         }
     ],
     "packages-dev": [
