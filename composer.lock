@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d404a38fd710941ccd712faa219ca2f",
+    "content-hash": "8da01d18b00fd3c3595362d6935d6909",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.3.20",
+            "version": "v0.3.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "634ceeb87dfecf35d88248b685deda3c47e77063"
+                "reference": "2195c492d5792a43a95ae9b79a6bb083f707c9d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/634ceeb87dfecf35d88248b685deda3c47e77063",
-                "reference": "634ceeb87dfecf35d88248b685deda3c47e77063",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/2195c492d5792a43a95ae9b79a6bb083f707c9d9",
+                "reference": "2195c492d5792a43a95ae9b79a6bb083f707c9d9",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-01-20T21:15:50+00:00"
+            "time": "2021-01-22T21:14:11+00:00"
         }
     ],
     "packages-dev": [
@@ -2525,12 +2525,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
