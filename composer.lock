@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9fcf15a2f0602f6b41637f69433436ad",
+    "content-hash": "f3a24474e3c04e856914d7e56e4d26dd",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.3.34",
+            "version": "v0.3.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "bb59766f26e1008aa8cd7e3f8c5bb334509bf57b"
+                "reference": "cbc077a2e16ea5bbe89dbd4fd4774f246c6cfb5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/bb59766f26e1008aa8cd7e3f8c5bb334509bf57b",
-                "reference": "bb59766f26e1008aa8cd7e3f8c5bb334509bf57b",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/cbc077a2e16ea5bbe89dbd4fd4774f246c6cfb5c",
+                "reference": "cbc077a2e16ea5bbe89dbd4fd4774f246c6cfb5c",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-24T20:42:39+00:00"
+            "time": "2021-03-03T20:48:23+00:00"
         }
     ],
     "packages-dev": [
@@ -1282,12 +1282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "a6bfc5a1416f0dde1f53b7737b2cf983352737b8"
+                "reference": "0745f820eed6cb92603ca44a9c137ff8ce315e86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/a6bfc5a1416f0dde1f53b7737b2cf983352737b8",
-                "reference": "a6bfc5a1416f0dde1f53b7737b2cf983352737b8",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0745f820eed6cb92603ca44a9c137ff8ce315e86",
+                "reference": "0745f820eed6cb92603ca44a9c137ff8ce315e86",
                 "shasum": ""
             },
             "conflict": {
@@ -1353,6 +1353,7 @@
                 "ezsystems/platform-ui-assets-bundle": ">=4.2,<4.2.3",
                 "ezsystems/repository-forms": ">=2.3,<2.3.2.1",
                 "ezyang/htmlpurifier": "<4.1.1",
+                "facade/ignition": "<=2.5.1,>=2.0|<=1.16.13",
                 "firebase/php-jwt": "<2",
                 "flarum/sticky": ">=0.1-beta.14,<=0.1-beta.15",
                 "flarum/tags": "<=0.1-beta.13",
@@ -1597,7 +1598,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-26T20:02:39+00:00"
+            "time": "2021-03-03T23:02:20+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
