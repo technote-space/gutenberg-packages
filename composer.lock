@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67b698c77c448501d400d78c4ef63b75",
+    "content-hash": "750bff6982c8d0e476b0887d9711987a",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.3.38",
+            "version": "v0.3.39",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "62907a74bdcfbd89991028bda243a2f1e32f804b"
+                "reference": "dd3db729f25c8b764c2c0c8e5006da3d74eeaf5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/62907a74bdcfbd89991028bda243a2f1e32f804b",
-                "reference": "62907a74bdcfbd89991028bda243a2f1e32f804b",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/dd3db729f25c8b764c2c0c8e5006da3d74eeaf5a",
+                "reference": "dd3db729f25c8b764c2c0c8e5006da3d74eeaf5a",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-03-17T20:43:42+00:00"
+            "time": "2021-03-18T20:43:46+00:00"
         }
     ],
     "packages-dev": [
@@ -1282,12 +1282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "fe6ef201f838f07770873731a99f359ebb64fa50"
+                "reference": "11b8a607a59818bb21fc9ffb334f03032a6ce5dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/fe6ef201f838f07770873731a99f359ebb64fa50",
-                "reference": "fe6ef201f838f07770873731a99f359ebb64fa50",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/11b8a607a59818bb21fc9ffb334f03032a6ce5dc",
+                "reference": "11b8a607a59818bb21fc9ffb334f03032a6ce5dc",
                 "shasum": ""
             },
             "conflict": {
@@ -1346,10 +1346,10 @@
                 "ezsystems/ezplatform": ">=1.7,<1.7.9.1|>=1.13,<1.13.5.1|>=2.5,<2.5.4",
                 "ezsystems/ezplatform-admin-ui": ">=1.3,<1.3.5|>=1.4,<1.4.6",
                 "ezsystems/ezplatform-admin-ui-assets": ">=4,<4.2.1|>=5,<5.0.1|>=5.1,<5.1.1",
-                "ezsystems/ezplatform-kernel": ">=1,<1.0.2.1",
+                "ezsystems/ezplatform-kernel": "<=1.2.5|>=1.3,<=1.3.1",
                 "ezsystems/ezplatform-rest": ">=1.2,<=1.2.2|>=1.3,<=1.3.1",
                 "ezsystems/ezplatform-user": ">=1,<1.0.1",
-                "ezsystems/ezpublish-kernel": ">=5.3,<5.3.12.1|>=5.4,<5.4.14.2|>=6,<6.7.9.1|>=6.8,<=6.13.8|>=7,<7.2.4.1|>=7.3,<7.3.2.1|>=7.5,<=7.5.15",
+                "ezsystems/ezpublish-kernel": "<=6.13.8.1|>=7,<=7.5.15.1",
                 "ezsystems/ezpublish-legacy": ">=5.3,<5.3.12.6|>=5.4,<5.4.14.2|>=2011,<2017.12.7.3|>=2018.6,<2018.6.1.4|>=2018.9,<2018.9.1.3|>=2019.3,<2019.3.5.1",
                 "ezsystems/platform-ui-assets-bundle": ">=4.2,<4.2.3",
                 "ezsystems/repository-forms": ">=2.3,<2.3.2.1",
@@ -1602,7 +1602,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-16T14:08:12+00:00"
+            "time": "2021-03-19T20:02:32+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
