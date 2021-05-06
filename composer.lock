@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfa16ddc0cfec68efc3d9df28ebee32d",
+    "content-hash": "85172f4b05cce46be45618bbb9e38175",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.3.49",
+            "version": "v0.3.50",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "d08dc07f25ab8cf15dfc7ddfda39f3a66e3da864"
+                "reference": "17bdffd05c11748514554d2d702ab592b7cdedd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/d08dc07f25ab8cf15dfc7ddfda39f3a66e3da864",
-                "reference": "d08dc07f25ab8cf15dfc7ddfda39f3a66e3da864",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/17bdffd05c11748514554d2d702ab592b7cdedd2",
+                "reference": "17bdffd05c11748514554d2d702ab592b7cdedd2",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-04-30T20:38:25+00:00"
+            "time": "2021-05-05T20:43:59+00:00"
         }
     ],
     "packages-dev": [
@@ -1232,16 +1232,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
                 "shasum": ""
             },
             "require": {
@@ -1265,7 +1265,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for logging libraries",
@@ -1275,7 +1275,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2020-03-23T09:12:05+00:00"
+            "time": "2021-05-03T11:20:27+00:00"
         },
         {
             "name": "roave/security-advisories",
@@ -1283,12 +1283,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "2da463d475b13cf8c519d862f1a6423ab7a515e3"
+                "reference": "db47aac368cb81bc9d3b09556e63b716be61cf43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/2da463d475b13cf8c519d862f1a6423ab7a515e3",
-                "reference": "2da463d475b13cf8c519d862f1a6423ab7a515e3",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/db47aac368cb81bc9d3b09556e63b716be61cf43",
+                "reference": "db47aac368cb81bc9d3b09556e63b716be61cf43",
                 "shasum": ""
             },
             "conflict": {
@@ -1432,7 +1432,7 @@
                 "pear/archive_tar": "<1.4.12",
                 "personnummer/personnummer": "<3.0.2",
                 "phpfastcache/phpfastcache": ">=5,<5.0.13",
-                "phpmailer/phpmailer": "<6.1.6",
+                "phpmailer/phpmailer": "<6.1.6|>=6.1.8,<6.4.1",
                 "phpmussel/phpmussel": ">=1,<1.6",
                 "phpmyadmin/phpmyadmin": "<4.9.6|>=5,<5.0.3",
                 "phpoffice/phpexcel": "<1.8.2",
@@ -1620,7 +1620,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-30T18:08:49+00:00"
+            "time": "2021-05-02T09:01:19+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
