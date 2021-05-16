@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ab85dd420c5194052dc9a45f9e6e4fd",
+    "content-hash": "d17b5b02caf0770836afedbd984aba14",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.3.51",
+            "version": "v0.3.52",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "3e96636120b2f149d313923560577f62f7309caa"
+                "reference": "d3a88fdef18839f542a04d542a8c60bc73777408"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/3e96636120b2f149d313923560577f62f7309caa",
-                "reference": "3e96636120b2f149d313923560577f62f7309caa",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/d3a88fdef18839f542a04d542a8c60bc73777408",
+                "reference": "d3a88fdef18839f542a04d542a8c60bc73777408",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-05-12T20:45:48+00:00"
+            "time": "2021-05-13T20:39:35+00:00"
         }
     ],
     "packages-dev": [
@@ -1283,12 +1283,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "630d41ce85b7af3598a7d2c07952739da298ecc6"
+                "reference": "5ffdb87f627ff16cc392e30515a1fe069cddc3e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/630d41ce85b7af3598a7d2c07952739da298ecc6",
-                "reference": "630d41ce85b7af3598a7d2c07952739da298ecc6",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5ffdb87f627ff16cc392e30515a1fe069cddc3e2",
+                "reference": "5ffdb87f627ff16cc392e30515a1fe069cddc3e2",
                 "shasum": ""
             },
             "conflict": {
@@ -1529,7 +1529,7 @@
                 "symfony/security-core": ">=2.4,<2.6.13|>=2.7,<2.7.9|>=2.7.30,<2.7.32|>=2.8,<3.4.48|>=4,<4.4.23|>=5,<5.2.8",
                 "symfony/security-csrf": ">=2.4,<2.7.48|>=2.8,<2.8.41|>=3,<3.3.17|>=3.4,<3.4.11|>=4,<4.0.11",
                 "symfony/security-guard": ">=2.8,<3.4.48|>=4,<4.4.23|>=5,<5.2.8",
-                "symfony/security-http": ">=2.3,<2.3.41|>=2.4,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.2.12|>=4.3,<4.3.8|>=4.4,<4.4.7|>=5,<5.0.7|>=5.1,<5.2.8",
+                "symfony/security-http": ">=2.3,<2.3.41|>=2.4,<2.7.51|>=2.8,<3.4.48|>=4,<4.4.23|>=5,<5.2.8",
                 "symfony/serializer": ">=2,<2.0.11",
                 "symfony/symfony": ">=2,<3.4.48|>=4,<4.4.23|>=5,<5.2.8",
                 "symfony/translation": ">=2,<2.0.17",
@@ -1627,7 +1627,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-12T16:13:16+00:00"
+            "time": "2021-05-13T21:03:10+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
