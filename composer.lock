@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "178564b564e8733a76fa9c214e7b428e",
+    "content-hash": "1908ee81f3d4cc674440751089c22c0b",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.3.55",
+            "version": "v0.3.56",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "427e1f4d434fe7d90d500ea33c6a6a8c41b6c0f3"
+                "reference": "1e6a8b4a8de4303eda1cdfb206fd31309f2185ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/427e1f4d434fe7d90d500ea33c6a6a8c41b6c0f3",
-                "reference": "427e1f4d434fe7d90d500ea33c6a6a8c41b6c0f3",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/1e6a8b4a8de4303eda1cdfb206fd31309f2185ac",
+                "reference": "1e6a8b4a8de4303eda1cdfb206fd31309f2185ac",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-05-26T20:45:49+00:00"
+            "time": "2021-06-02T21:06:04+00:00"
         }
     ],
     "packages-dev": [
@@ -1283,12 +1283,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "80f32ef3cff7c3b5b650d8aa823437b43d5c5056"
+                "reference": "9460a22455b82b353d2212fecedebcf73b141baa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/80f32ef3cff7c3b5b650d8aa823437b43d5c5056",
-                "reference": "80f32ef3cff7c3b5b650d8aa823437b43d5c5056",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/9460a22455b82b353d2212fecedebcf73b141baa",
+                "reference": "9460a22455b82b353d2212fecedebcf73b141baa",
                 "shasum": ""
             },
             "conflict": {
@@ -1438,6 +1438,7 @@
                 "paypal/merchant-sdk-php": "<3.12",
                 "pear/archive_tar": "<1.4.12",
                 "personnummer/personnummer": "<3.0.2",
+                "phanan/koel": "<5.1.4",
                 "phpfastcache/phpfastcache": ">=5,<5.0.13",
                 "phpmailer/phpmailer": "<6.1.6|>=6.1.8,<6.4.1",
                 "phpmussel/phpmussel": ">=1,<1.6",
@@ -1631,7 +1632,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T16:24:26+00:00"
+            "time": "2021-06-01T22:04:47+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
