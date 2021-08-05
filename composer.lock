@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a459fcf1a856e157d5393f283542b198",
+    "content-hash": "7e9ec7489141a45fa6de66e087b5b53a",
     "packages": [
         {
             "name": "technote/gutenberg-package-versions",
-            "version": "v0.3.70",
+            "version": "v0.3.71",
             "source": {
                 "type": "git",
                 "url": "https://github.com/technote-space/gutenberg-package-versions.git",
-                "reference": "cfc7a60e05a120dd086e647db4618f6b976fe476"
+                "reference": "9e6c672589cffa73dfb28bfa07f73da6403a3297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/cfc7a60e05a120dd086e647db4618f6b976fe476",
-                "reference": "cfc7a60e05a120dd086e647db4618f6b976fe476",
+                "url": "https://api.github.com/repos/technote-space/gutenberg-package-versions/zipball/9e6c672589cffa73dfb28bfa07f73da6403a3297",
+                "reference": "9e6c672589cffa73dfb28bfa07f73da6403a3297",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-07-28T20:35:35+00:00"
+            "time": "2021-08-04T20:35:44+00:00"
         }
     ],
     "packages-dev": [
@@ -2126,7 +2126,6 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "abandoned": true,
             "time": "2015-07-28T20:34:47+00:00"
         },
         {
