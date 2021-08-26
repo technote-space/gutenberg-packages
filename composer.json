@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": ">=5.6",
-    "technote/gutenberg-package-versions": "^0.3.74"
+    "technote/gutenberg-package-versions": "^0.3.75"
   },
   "autoload": {
     "psr-4": {
